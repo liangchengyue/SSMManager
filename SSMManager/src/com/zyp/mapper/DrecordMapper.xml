@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyp.mapper.DrecordMapper">
+	<select id="drecordList" parameterType="com.zyp.util.Pagination"
+		resultType="drecord">
+		SELECT
+		id,vnumber,driverid,startmileage,endmileage,origin,destination,starttime,endtime
+		from drecord LIMIT #{skipNum},#{takeNum}
+	</select>
+	
+	<select id="drecordCount" parameterType="com.zyp.util.Pagination"
+		resultType="int">
+		SELECT COUNT(*) from drecord LIMIT #{skipNum},#{takeNum}
+	</select>
+
+	<insert id="insertDrecord" parameterType="drecord">
+		<selectKey resultType="String" keyProperty="id" order="BEFORE">
+			select replace(uuid(),'-','') from dual
+		</selectKey>
+		INSERT INTO
+		drecord (id,vnumber,driverid,startmileage,endmileage,origin,destination,starttime,endtime)
+		VALUES(#{id},#{vnumber},#{driverid},#{startmileage},#{endmileage},#{origin},#{destination},#{starttime},#{endtime})
+	</insert>
+	
+	<delete id="deleteDrecord" parameterType="com.zyp.pojo.Drecord">
+		DELETE FROM drecord WHERE id=#{id}
+	</delete>
+	
+	<select id="fingDrecordById" parameterType="string" resultType="com.zyp.pojo.Drecord">
+	select * from drecord where id=#{id}
+	</select>
+	
+	<update id="updateDrecord" parameterType="com.zyp.pojo.Drecord">
+	UPDATE drecord set
+	vnumber=#{vnumber},
+	driverid=#{driverid},
+	startmileage=#{startmileage},
+	endmileage=#{endmileage},
+	origin=#{origin},
+	destination=#{destination},
+	starttime=#{starttime},
+	endtime=#{endtime}
+	where id=#{id}
+	</update>
+	
+</mapper>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyp.mapper.VInspectionMapper">
+	<select id="vinspectionList" parameterType="com.zyp.util.Pagination"
+		resultType="vinspection">
+		SELECT id,Ytype,vnumber,carefutime,pretime,userid,state,`desc` from vinspection LIMIT #{skipNum},#{takeNum}
+	</select>
+	
+	<select id="vinspectionCount" parameterType="com.zyp.util.Pagination"
+		resultType="int">
+		SELECT COUNT(*) from vinspection LIMIT #{skipNum},#{takeNum}
+	</select>
+
+	<insert id="insertVInspection" parameterType="vinspection">
+		<selectKey resultType="String" keyProperty="id" order="BEFORE">
+			select replace(uuid(),'-','') from dual
+		</selectKey>
+		INSERT INTO
+		vinspection (id,ytype,vnumber,carefutime,pretime,userid,desc)
+		VALUES (#{id},#{ytype},#{vnumber},#{carefutime},#{pretime},#{userid},#{desc})
+	</insert>
+	<delete id="deleteVInspection" parameterType="com.zyp.pojo.VInspection">
+		DELETE FROM vinspection WHERE id=#{id}
+	</delete>
+	
+	<select id="fingVInspectionById" parameterType="string" resultType="com.zyp.pojo.VInspection">
+	select * from user where id=#{id}
+	</select>
+	
+	<update id="updateVInspection" parameterType="com.zyp.pojo.VInspection">
+	UPDATE vinspection set
+	ytype=#{ytype},
+	vnumber=#{vnumber},
+	carefutime=#{carefutime},
+	pretime=#{pretime},
+	userid=#{userid},
+	desc=#{desc}
+	where id=#{id}
+	</update>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.zyp.mapper.VMaintenanceMapper">
+	<select id="vmaintenanceList" parameterType="com.zyp.util.Pagination"
+		resultType="vmaintenance">
+		SELECT
+		id,driverid,maintenancetime,vnumber,problem,state,address,invoicenumber
+		from vmaintenance LIMIT #{skipNum},#{takeNum}
+	</select>
+	
+	<select id="vmaintenanceCount" parameterType="com.zyp.util.Pagination"
+		resultType="int">
+		SELECT COUNT(*) from vmaintenance LIMIT #{skipNum},#{takeNum}
+	</select>
+
+	<insert id="insertVMaintenance" parameterType="vmaintenance">
+		<selectKey resultType="String" keyProperty="id" order="BEFORE">
+			select replace(uuid(),'-','') from dual
+		</selectKey>
+		INSERT INTO
+		vmaintenance (id,driverid,maintenancetime,vnumber,problem,state,address,invoicenumber)
+		VALUES(#{id},#{driverid},#{maintenancetime},#{vnumber},#{problem},#{state},#{address},#{invoicenumber})
+	</insert>
+	<delete id="deleteVMaintenance" parameterType="com.zyp.pojo.VMaintenance">
+		DELETE FROM vmaintenance WHERE id=#{id}
+	</delete>
+	
+	<select id="fingVMaintenanceById" parameterType="string" resultType="com.zyp.pojo.VMaintenance">
+	select * from vmaintenance where id=#{id}
+	</select>
+	
+	<update id="updateVMaintenance" parameterType="com.zyp.pojo.VMaintenance">
+	UPDATE vmaintenance set
+	driverid=#{driverid},
+	maintenance=#{maintenancetime},
+	vnumber=#{vnumber},
+	problem=#{problem},
+	state=#{state},
+	address=#{address},
+	invoicenumber=#{invoicenumber}
+	where id=#{id}
+	</update>
+</mapper>
