@@ -8,12 +8,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
     <title> 登录</title>
-    <link href="resource/css/bootstrap.min.css" rel="stylesheet">
-    <link href="resource/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
-    <link href="resource/css/animate.min.css" rel="stylesheet">
-    <link href="resource/css/style.min.css" rel="stylesheet">
-    <link href="resource/css/login.min.css" rel="stylesheet">
-    <script src="resource/js/jquery.min.js"></script>
+    <link href="../resource/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resource/css/font-awesome.min.css?v=4.4.0" rel="stylesheet">
+    <link href="../resource/css/animate.min.css" rel="stylesheet">
+    <link href="../resource/css/style.min.css" rel="stylesheet">
+    <link href="../resource/css/login.min.css" rel="stylesheet">
     <script>
         $(function () {
             $("#login").click(function () {
@@ -49,7 +48,7 @@
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势四</li>
                         <li><i class="fa fa-arrow-circle-o-right m-r-xs"></i> 优势五</li>
                     </ul>
-                    <strong>还没有账号？ <a href="#">立即注册&raquo;</a></strong>
+                    <strong>还没有账号？ <a href="toRegister">立即注册&raquo;</a></strong>
                 </div>
             </div>
             <div class="col-sm-5">

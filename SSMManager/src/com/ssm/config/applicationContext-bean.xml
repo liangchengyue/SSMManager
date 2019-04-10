@@ -10,6 +10,7 @@
     
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
+        <bean name="userService" class="com.ssm.service.impl.UserServiceImpl"/>
 	<!-- <bean name="userService" class="com.zyp.service.impl.UserServiceImpl"/>
 	<bean name="driverService" class="com.zyp.service.impl.DriverServiceImpl"/>
 	<bean name="vinfoService" class="com.zyp.service.impl.VInfoServiceImpl"/>
