@@ -1,14 +1,28 @@
 package com.ssm.pojo;
 
+/**
+ * 用户表
+ * @author 
+ *
+ */
 public class User {
+	//编号
 	private int id; 
+	//登录名
 	private String userName;
+	//密码
 	private String password;
+	//是否是管理员
 	private String type;
+	//姓名
 	private String name;
+	//年龄
 	private int age;
+	//性别
 	private String sex;
+	//电话
 	private String phone;
+	
 	public int getId() {
 		return id;
 	}
