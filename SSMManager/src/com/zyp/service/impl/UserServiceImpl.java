@@ -9,12 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.ssm.util.Util;
 import com.zyp.custom.SelectCustom;
 import com.zyp.mapper.UserMapper;
 import com.zyp.pojo.User;
 import com.zyp.service.UserService;
 import com.zyp.util.Pagination;
-import com.zyp.util.Util;
 @Transactional
 public class UserServiceImpl implements UserService {
 	@Autowired

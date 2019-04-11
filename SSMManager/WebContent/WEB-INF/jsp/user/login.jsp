@@ -13,6 +13,7 @@
     <link href="../resource/css/animate.min.css" rel="stylesheet">
     <link href="../resource/css/style.min.css" rel="stylesheet">
     <link href="../resource/css/login.min.css" rel="stylesheet">
+    <script type="text/javascript" src="../resource/js/jquery.min.js"></script>
     <script>
         $(function () {
             $("#login").click(function () {
@@ -23,8 +24,20 @@
                 if (pwd.trim() == "") {
                     return;
                 }
-                var type = $("#type").val();
-                window.location.href = "index.html?x=1&type=" + type
+                $.ajax({
+                	url:'login',
+                	data:{
+                		"userName":name,
+                		"password":pwd
+                	},
+                	type:"POST",
+                	success:function(data){
+                		console.log(data);
+                		if(data!="登录失败"){
+                			window.location.href="/SSMManager/common/toFrame";
+                		}
+                	}
+                });
             });
             
         });

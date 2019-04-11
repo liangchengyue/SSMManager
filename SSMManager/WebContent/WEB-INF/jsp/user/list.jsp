@@ -20,17 +20,24 @@
 <link rel="stylesheet" href="resource/layui/css/layui.css">
 <link href="resource/css/bootstrap.min.css" rel="stylesheet" />
 <script src="resource/js/jquery.min.js"></script>
+<script src="resource/js/jquery.validate.min.js"></script>
+<script src="resource/js/jquery.validate.unobtrusive.min.js"></script>
 <script src="resource/js/bootstrap.min.js"></script>
 <script src="resource/js/common.js"></script>
 <script type="text/javascript"
 	src="resource/plugins/grid_manager/GridManager.min.js"></script>
 <script type="text/javascript" src="resource/layui/layui.js"></script>
+<style type="text/css">
+span.field-validation-error {
+	color: red;
+}
+</style>
 <script type="text/javascript">
 	$(function() {
-		init();
+		init("");
 	})
 
-	function init() {
+	function init(keyword) {
 		var table = document
 				.querySelector('table[grid-manager="demo-ajaxPageCode"]');
 		table
@@ -39,42 +46,26 @@
 					ajax_type : 'POST',
 					query : {
 						pluginId : 1,
-						'keyword' : '123'
+						'keyword' : keyword
 					},
 					supportAjaxPage : true,
 					supportCheckbox : false,
 					columnData : [
 							{
-								key : 'number',
+								key : 'userName',
 								text : '用户名'
-							},
-							{
-								key : 'username',
-								text : '登录名'
 							},
 							{
 								key : 'name',
-								text : '用户名'
+								text : '姓名'
 							},
 							{
-								key : 'password',
-								text : '密码'
-							},
-							{
-								key : 'phonenumber',
+								key : 'phone',
 								text : '联系电话'
 							},
 							{
-								key : 'denger',
+								key : 'sex',
 								text : '性别'
-							},
-							{
-								key : 'idcard',
-								text : '身份证号'
-							},
-							{
-								key : 'address',
-								text : '家庭地址'
 							},
 							{
 								key : 'action',
@@ -139,65 +130,82 @@
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group" lang="username">
-									<label for="username">登录名：</label> <input type="text"
-										class="form-control" name="username" id="username"
-										placeholder="登录名">
+									<label for="username">用户名：</label> <input type="text"
+										class="form-control" name="userName" id="userName"
+										placeholder="用户名" data-val="true"
+										data-val-required="请填写 &#39;用户名&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="userName"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="col-lg-12 hiden">
+								<div class="form-group" lang="no">
+									<label for="password">密码：</label> <input type="password"
+										class="form-control" name="password" id="password"
+										placeholder="密码" data-val="true"
+										data-val-required="请填写 &#39;密码&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="password"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div  class="col-lg-12 hiden">
+								<div class="form-group" lang="class">
+									<label for="truepassword">确认密码：</label> <input type="password"
+										class="form-control" id="truepassword" name="truepassword"
+										placeholder="确认密码" data-val="true" data-val-equalto="两次密码不匹配。"
+										data-val-equalto-other="password"> <span
+										class="field-validation-error" data-valmsg-for="truepassword"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div  class="col-lg-12 hiden">
+								<div class="form-group" lang="denger">
+									<label for="denger">用户类型：</label>
+									<div class="form-group">
+										<label class="radio-inline"> <input type="radio"
+											value="0" name="type" checked="checked">管理员 <label
+											class="radio-inline"> <input type="radio" value="1"
+												name="type">普通用户
+										</label>
+									</div>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group" lang="name">
 									<label for="name">姓名：</label> <input type="text"
-										class="form-control" name="name" id="name" placeholder="姓名">
+										class="form-control" name="name" id="name" placeholder="姓名"
+										data-val="true" data-val-required="请填写 &#39;姓名&#39;。">
+									<span class="field-validation-error" data-valmsg-for="name"
+										data-valmsg-replace="true"></span>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group" lang="denger">
-									<label for="denger">性别：</label> <input type="radio"
-										name="denger" value="false">男 <input type="radio"
-										name="denger" value="true">女
+									<label for="denger">性别：</label>
+									<div class="form-group">
+										<label class="radio-inline"> <input type="radio"
+											value="男" name="sex" checked="checked">男 <label
+											class="radio-inline"> <input type="radio" value="女"
+												name="sex">女
+										</label>
+									</div>
 								</div>
 							</div>
+
 							<div class="col-lg-12">
-								<div class="form-group" lang="name">
-									<label for="idcard">身份证名：</label> <input type="text"
-										class="form-control" name="idcard" id="idcard"
-										placeholder="身份证名">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="address">
-									<label for="address">地址：</label> <input type="text"
-										class="form-control" name="address" id="address"
-										placeholder="地址">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="number">
-									<label for="number">职工编号：</label> <input type="text"
-										class="form-control" name="number" id="number"
-										placeholder="职工编号">
+								<div class="form-group" lang="phonenumber">
+									<label for="phone">电话号码：</label> <input type="text"
+										class="form-control" name="phone" id="phone"
+										placeholder="电话号码" data-val="true"
+										data-val-required="请填写 &#39;电话号码&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="name"
+										data-valmsg-replace="true"></span>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group" lang="phonenumber">
-									<label for="phonenumber">电话号码：</label> <input type="text"
-										class="form-control" name="phonenumber" id="phonenumber"
-										placeholder="电话号码">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="no">
-									<label for="password">密码：</label> <input type="password"
-										class="form-control" name="password" id="password"
-										placeholder="密码">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="class">
-									<label for="truepassword">确认密码：</label> <input type="password"
-										class="form-control" id=""
-										truepassword""
-										placeholder="确认密码">
+									<label for="phone">年龄：</label> <input type="text"
+										class="form-control" name="age" id="age" placeholder="年龄">
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -218,7 +226,17 @@
 					.append('<table grid-manager="demo-ajaxPageCode"></table>');
 			init(keyword);
 		}
+		$("#serach").click(function(){
+			var keyword=$("#key").val();
+			console.log(keyword);
+			if(keyword!=undefined&&keyword!=null&&keyword.trim()!=""){
+				RefreshGridManagerList(keyword);
+			}
+		});
 		$("#add").click(function() {
+			if (!$('#data').valid()) {
+				return;
+			}
 			layui.use('layer', function() {
 				layer = layui.layer;
 				var id = $("#id").val();
@@ -226,7 +244,7 @@
 				var msg;
 				var data;
 				if (id == "") {
-					url = "user/regist";
+					url = "user/register";
 					msg = "添加成功";
 					data = $("#data").serialize();
 				} else {
@@ -271,7 +289,7 @@
 							}
 						}
 					});
-					
+
 					layer.close(index);
 
 				});
@@ -283,7 +301,7 @@
 		//更新信息
 		function updateInfo(id) {
 			$.ajax({
-				url : 'user/findUserById',
+				url : 'user/findById',
 				data : {
 					'id' : id
 				},
@@ -294,6 +312,7 @@
 						$("#" + k).val(data[k]);
 					}
 					$("#myModal").modal('show');
+					$(".hiden").hide()
 				}
 			});
 		}

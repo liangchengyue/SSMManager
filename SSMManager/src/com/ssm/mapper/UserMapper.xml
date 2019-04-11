@@ -2,13 +2,56 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.mapper.UserMapper">
-	<!-- <select id="userCount" parameterType="com.ssm.util.Pagination"
-		resultType="int">
-		SELECT COUNT(*) from `user` LIMIT #{skipNum},#{takeNum}
-	</select> -->
-	<select id="insert" parameterType="user">
+<!-- 查询SQL片段 -->
+	<sql id="select">
+		id,username userName,`password`, type,`name`,age,sex,phone
+	</sql>
+	<!-- 筛选片段 -->
+	<sql id="serach">
+		where userName like '%${keyword}%' or name like '%${keyword}%' or phone like '%${keyword}%' or sex like '%${keyword}%' 
+	</sql>
+<!-- 添加用户 -->
+	<insert id="insert" parameterType="user">
 		INSERT INTO 
 		`user`(id,username,password,type,name,age,sex,phone)
 		VALUES(#{id},#{userName},#{password},#{type},#{name},#{age},#{sex},#{phone})
+	</insert>
+<!-- 用户登录 -->
+	<select id="login" parameterType="user" resultType="user">
+		 SELECT <include refid="select"/>
+		 WHERE username=#{userName} AND password=#{password}
 	</select>
+	<!-- 查询分页数据 -->
+	<select id="list" parameterType="com.ssm.util.Pagination"
+		resultType="user">
+		SELECT <include refid="select"/>
+		from `user`
+		 <include refid="serach"/>
+		 LIMIT #{skipNum},#{takeNum}
+	</select>
+	<!-- 查询分页条数 -->
+	<select id="count" parameterType="com.ssm.util.Pagination"
+		resultType="int">
+		SELECT COUNT(*) from `user`
+		 <include refid="serach"/>
+		  LIMIT #{skipNum},#{takeNum}
+	</select>
+	<!-- 删除用户 -->
+	<delete id="delete" parameterType="user">
+		DELETE FROM `user` WHERE id=#{id}
+	</delete>
+	<!-- 根据Id查询用户 -->
+	<select id="findById" parameterType="string" resultType="user">
+		select <include refid="select"/> from user where id=#{id}
+	</select>
+	<!-- 更新用户 -->
+	<update id="update" parameterType="user">
+		UPDATE `user` set
+		username=#{userName},
+		name=#{name},
+		age=#{age},
+		sex=#{sex},
+		phone=#{phone}
+		where id=#{id}
+	</update>
 </mapper>

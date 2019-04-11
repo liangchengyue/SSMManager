@@ -4,13 +4,13 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+import com.ssm.util.Util;
 import com.zyp.custom.SelectCustom;
 import com.zyp.mapper.DictionarieMapper;
 import com.zyp.pojo.Dictionarie;
 import com.zyp.pojo.User;
 import com.zyp.service.DictionarieService;
 import com.zyp.util.Pagination;
-import com.zyp.util.Util;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
