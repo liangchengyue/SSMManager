@@ -198,7 +198,7 @@ span.field-validation-error {
 										class="form-control" name="phone" id="phone"
 										placeholder="电话号码" data-val="true"
 										data-val-required="请填写 &#39;电话号码&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="name"
+										class="field-validation-error" data-valmsg-for="phone"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>
@@ -228,7 +228,6 @@ span.field-validation-error {
 		}
 		$("#serach").click(function(){
 			var keyword=$("#key").val();
-			console.log(keyword);
 			if(keyword!=undefined&&keyword!=null&&keyword.trim()!=""){
 				RefreshGridManagerList(keyword);
 			}
@@ -313,6 +312,7 @@ span.field-validation-error {
 					}
 					$("#myModal").modal('show');
 					$(".hiden").hide()
+					$("span.field-validation-error").hide();
 				}
 			});
 		}
