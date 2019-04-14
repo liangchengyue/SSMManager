@@ -18,7 +18,7 @@
 	</insert>
 <!-- 用户登录 -->
 	<select id="login" parameterType="user" resultType="user">
-		 SELECT <include refid="select"/>
+		 SELECT <include refid="select"/> from user
 		 WHERE username=#{userName} AND password=#{password}
 	</select>
 	<!-- 查询分页数据 -->

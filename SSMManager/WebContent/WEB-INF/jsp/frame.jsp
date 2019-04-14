@@ -10,7 +10,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <base href="<%=basePath%>">
     
     <link rel="shortcut icon" href="resource/favicon.ico" />
-	<title>电力研究院车辆管理系统</title>
+	<title>小区物业管理系统</title>
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
 	<meta http-equiv="expires" content="0">    
@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <iframe class="J_iframe" name="iframe0" width="100%" height="100%" src="common/toDataServer" frameborder="0" data-id="index_v1.html" seamless></iframe>
             </div>
             <div class="footer">
-                <div class="pull-right">&copy; 2017-2018 电力研究院车辆管理系统
+                <div class="pull-right">&copy; 2018-2019 小区物业管理系统
                 </div>
             </div>
         </div>

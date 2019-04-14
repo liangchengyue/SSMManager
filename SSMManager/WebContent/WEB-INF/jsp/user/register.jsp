@@ -16,8 +16,8 @@
 <body class="gray-bg">
     <div class="middle-box text-center loginscreen   animated fadeInDown">
         <div>
-            <h3>欢迎注册 小区管理系统</h3>
-            <p>创建一个小区管理系统新账户</p>
+            <h3>欢迎注册 小区物业管理系统</h3>
+            <p>创建一个小区物业管理系统新账户</p>
             <form class="m-t" role="form" action="login.html">
                 <div class="form-group">
                     <input type="text" class="form-control" placeholder="请输入用户名" required="">
