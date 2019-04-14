@@ -1,5 +1,8 @@
 package com.ssm.controller;
 
+import java.util.Date;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssm.pojo.Complaint;
+import com.ssm.pojo.User;
 import com.ssm.service.ComplaintService;
 import com.ssm.util.Pagination;
 
@@ -21,7 +25,13 @@ public class ComplaintController {
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public String add(Complaint complaint) {
+	public String add(Complaint complaint,HttpServletRequest request) {
+		complaint.setTime(new Date());
+		User user=(User)request.getSession().getAttribute("user");
+		if(user==null)
+			return "error";
+		complaint.setUserId(user.getId());
+		System.out.println(user.getId()+"----------------------------------------");
 		complaintService.insert(complaint);
 		return "ok";
 	}

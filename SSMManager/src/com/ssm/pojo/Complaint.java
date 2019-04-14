@@ -13,8 +13,9 @@ public class Complaint {
 	private int isReplay;
 	//用户id
 	private int userId;
+	private String userName;
 	//回复内容
-	private String replay;
+	private String reply;
 	
 	public int getId() {
 		return id;
@@ -46,11 +47,17 @@ public class Complaint {
 	public void setUserId(int userId) {
 		this.userId = userId;
 	}
-	public String getReplay() {
-		return replay;
+	public String getReply() {
+		return reply;
 	}
-	public void setReplay(String replay) {
-		this.replay = replay;
+	public void setReplay(String reply) {
+		this.reply = reply;
+	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
 	}
 	
 	

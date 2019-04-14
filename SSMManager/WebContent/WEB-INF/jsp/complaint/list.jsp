@@ -42,7 +42,7 @@ span.field-validation-error {
 				.querySelector('table[grid-manager="demo-ajaxPageCode"]');
 		table
 				.GM({
-					ajax_url : 'floor/list',
+					ajax_url : 'complaint/list',
 					ajax_type : 'POST',
 					query : {
 						pluginId : 1,
@@ -52,20 +52,24 @@ span.field-validation-error {
 					supportCheckbox : false,
 					columnData : [
 							{
-								key : 'numbers',
-								text : '门牌号'
+								key : 'time',
+								text : '投诉时间'
 							},
 							{
-								key : 'size',
-								text : '面积'
+								key : 'userName',
+								text : '投诉用户'
 							},
 							{
-								key : 'type',
-								text : '户型'
-							},
-							{
-								key : 'state',
-								text : '是否入住'
+								key : 'isReplay',
+								text : '是否回复',
+								remind : 'the action',
+								template : function(action, rowObject) {
+									if(rowObject.isReplay==0){
+										return "待回复";
+									}else{
+										return "已回复";
+									}
+								}
 							},
 							{
 								key : 'action',
@@ -89,7 +93,7 @@ span.field-validation-error {
 <body style="margin: 20px">
 	<div class="row">
 		<div class="col-md-10">
-			<h3>楼房列表</h3>
+			<h3>投诉列表</h3>
 		</div>
 		<div class="col-md-1">
 			<div class="form-group">
@@ -122,7 +126,7 @@ span.field-validation-error {
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">添加楼房</h4>
+					<h4 class="modal-title">添加投诉</h4>
 				</div>
 				<form id="data">
 					<div class="modal-body">
@@ -130,43 +134,12 @@ span.field-validation-error {
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="numbers">门牌号：</label> <input type="text"
-										class="form-control" name="numbers" id="numbers"
-										placeholder="门牌号" data-val="true"
-										data-val-required="请填写 &#39;门牌号&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="numbers"
+									<label for="content">投诉内容：</label>
+									<textarea class="form-control" rows="6" cols="" name="content"
+										id="content" data-val="true"
+										data-val-required="请填写 &#39;投诉内容&#39;。"></textarea>
+									<span class="field-validation-error" data-valmsg-for="content"
 										data-valmsg-replace="true"></span>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<label for="size">面积：</label> <input type="number"
-										class="form-control" name="size" id="size"
-										placeholder="面积(平方米)" data-val="true"
-										data-val-required="请填写 &#39;面积&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="size"
-										data-valmsg-replace="true"></span>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<label for="type">户型：</label> <input type="text"
-										class="form-control" name="type" id="type" placeholder="户型 "
-										data-val="true" data-val-required="请填写 &#39;户型&#39;。">
-									<span class="field-validation-error" data-valmsg-for="type"
-										data-valmsg-replace="true"></span>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group">
-									<label for="state">是否入住：</label>
-									<div class="form-group">
-										<label class="radio-inline"> <input type="radio"
-											value="否" name="state" checked="checked">未入住 <label
-											class="radio-inline"> <input type="radio" value="是"
-												name="state">已入住
-										</label>
-									</div>
 								</div>
 							</div>
 							<div class="modal-footer">
@@ -195,40 +168,65 @@ span.field-validation-error {
 						RefreshGridManagerList(keyword);
 					}
 				});
-		$("#add").click(function() {
-			if (!$('#data').valid()) {
-				return;
-			}
-			layui.use('layer', function() {
-				layer = layui.layer;
-				var id = $("#id").val();
-				var url;
-				var msg;
-				var data;
-				if (id == "") {
-					url = "floor/add";
-					msg = "添加成功";
-					data = $("#data").serialize();
-				} else {
-					url = "floor/update";
-					msg = "修改成功";
-					data = $("#data").serialize() + "&id=" + id;
-				}
+		$("#add")
+				.click(
+						function() {
+							if (!$('#data').valid()) {
+								return;
+							}
+							layui
+									.use(
+											'layer',
+											function() {
+												layer = layui.layer;
+												var id = $("#id").val();
+												var url;
+												var msg;
+												var data;
+												if (id == "") {
+													url = "complaint/add";
+													msg = "添加成功";
+													data = $("#data")
+															.serialize();
+												} else {
+													url = "complaint/update";
+													msg = "修改成功";
+													data = $("#data")
+															.serialize()
+															+ "&id=" + id;
+												}
 
-				$.ajax({
-					url : url,
-					type : "POST",
-					data : data,
-					success : function(data) {
-						$("#myModal").modal('hide');
-						layer.msg(msg);
-						$("#id").val("");
-						document.getElementById("data").reset();
-						RefreshGridManagerList("");
-					}
-				});
-			});
-		});
+												$
+														.ajax({
+															url : url,
+															type : "POST",
+															data : data,
+															success : function(
+																	data) {
+																if (data === "error") {
+																	layer
+																			.msg("请先登录");
+																	window.parent.location.href = "/SSMManager/user/toLogin";
+																} else {
+																	$(
+																			"#myModal")
+																			.modal(
+																					'hide');
+																	layer
+																			.msg(msg);
+																	$("#id")
+																			.val(
+																					"");
+																	document
+																			.getElementById(
+																					"data")
+																			.reset();
+																	RefreshGridManagerList("");
+																}
+															}
+														});
+											});
+						});
 
 		//删除
 		function deleteInfo(ob) {
@@ -239,7 +237,7 @@ span.field-validation-error {
 				}, function(index) {
 
 					$.ajax({
-						url : "floor/detele",
+						url : "complaint/detele",
 						type : "POST",
 						data : {
 							'id' : ob
@@ -263,7 +261,7 @@ span.field-validation-error {
 		//更新信息
 		function updateInfo(id) {
 			$.ajax({
-				url : 'floor/findById',
+				url : 'complaint/findById',
 				data : {
 					'id' : id
 				},

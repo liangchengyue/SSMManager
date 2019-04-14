@@ -57,41 +57,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                     	<a class="J_menuItem" href="user/toList"><i class="fa fa-user"></i>用户列表</a>
+                    	<a class="J_menuItem" href="floor/toList"><i class="fa fa-user"></i>楼房列表</a>
+                    	<a class="J_menuItem" href="complaint/toList"><i class="fa fa-user"></i>投诉列表</a>
+                    	<a class="J_menuItem" href="fee/toList"><i class="fa fa-user"></i>费用列表</a>
                     	<a class="J_menuItem" href="notice/toList"><i class="fa fa-user"></i>公告列表</a>
                     </li>
-                    <li>
-						<!-- <a class="J_menuItem">
-							<i class="fa fa-table"></i>
-							基本表单
-							<span class="fa arrow"></span>
-						</a> -->
-						<ul class="nav nav-second-level">
-							<li>
-								<a class="J_menuItem" href="user/toList">用户列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="driver/toList">驾驶员列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="vinfo/toList">车辆信息列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="drecord/toList">行车记录列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="vmaintenance/toList">维修记录列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="vinspection/toList">年审列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="oil/toList">油量列表</a>
-							</li>
-							<li>
-								<a class="J_menuItem" href="dictionarie/toList">字典列表</a>
-							</li>
-						</ul>
-					</li>
                 </ul>
             </div>
         </nav>

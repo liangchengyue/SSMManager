@@ -1,5 +1,8 @@
 package com.ssm.controller;
 
+import java.util.Date;
+
+import org.apache.catalina.servlet4preview.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -7,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssm.pojo.Fee;
+import com.ssm.pojo.User;
 import com.ssm.service.FeeService;
 import com.ssm.util.Pagination;
 
@@ -22,7 +26,13 @@ public class FeeController {
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public String add(Fee fee) {
+	public String add(Fee fee,HttpServletRequest request) {
+		User user=(User)request.getSession().getAttribute("user");
+		if (user==null) {
+			return "error";
+		}
+		fee.setUserId(user.getId());
+		fee.setTime(new Date());
 		feeService.insert(fee);
 		return "ok";
 	}

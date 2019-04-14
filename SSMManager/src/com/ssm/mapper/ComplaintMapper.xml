@@ -2,48 +2,62 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ssm.mapper.ComplaintMapper">
-<!-- 查询SQL片段 -->
+	<!-- 查询SQL片段 -->
 	<sql id="select">
-		id,content,time,isreplay isReplay,userid userId,replay
+		c.id id,content,time,isreplay isReplay,userid
+		userId,reply,u.name userName
 	</sql>
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where content like '%${keyword}%' or replay  
+		where u.name like '%${keyword}%'
+		'%${keyword}%'
 	</sql>
-<!-- 添加投诉-->
+	<!-- 添加投诉 -->
 	<insert id="insert" parameterType="complaint">
-		INSERT INTO 
-		complaint (id,content,time,isreplay,userid,replay)
-		VALUES(#{id},#{content},#{time},#{isReplay},#{userId},#{replay})
+		INSERT INTO
+		complaint
+		(id,content,time,isreplay,userid,reply)
+		VALUES(#{id},#{content},#{time},#{isReplay},#{userId},#{reply})
 	</insert>
 	<!-- 查询分页数据 -->
 	<select id="list" parameterType="com.ssm.util.Pagination"
 		resultType="complaint">
-		SELECT <include refid="select"/>
-		from complaint
-		 <include refid="serach"/>
-		 LIMIT #{skipNum},#{takeNum}
+		SELECT
+		<include refid="select" />
+		FROM complaint c
+		JOIN `user` u
+		on c.userid=u.id
+		<include refid="serach" />
+		LIMIT #{skipNum},#{takeNum}
 	</select>
 	<!-- 查询分页条数 -->
 	<select id="count" parameterType="com.ssm.util.Pagination"
 		resultType="int">
-		SELECT COUNT(*) from complaint
-		 <include refid="serach"/>
-		  LIMIT #{skipNum},#{takeNum}
+		SELECT COUNT(*) FROM complaint c
+		JOIN `user` u
+		on c.userid=u.id
+		<include refid="serach" />
+		LIMIT #{skipNum},#{takeNum}
 	</select>
-	<!-- 删除投诉-->
+	<!-- 删除投诉 -->
 	<delete id="delete" parameterType="user">
-		DELETE FROM complaint WHERE id=#{id}
+		DELETE FROM complaint WHERE
+		id=#{id}
 	</delete>
 	<!-- 根据Id查询投诉 -->
-	<select id="findById" parameterType="string" resultType="complaint">
-		select <include refid="select"/> from complaint where id=#{id}
+	<select id="findById" parameterType="string"
+		resultType="complaint">
+		select
+		<include refid="select" />
+		FROM complaint c
+		JOIN `user` u
+		on c.userid=u.id where c.id=#{id}
 	</select>
 	<!-- 更新投诉 -->
 	<update id="update" parameterType="complaint">
 		UPDATE complaint set
 		content=#{content},
-		replay=#{replay}
+		reply=#{reply}
 		where id=#{id}
 	</update>
 </mapper>
