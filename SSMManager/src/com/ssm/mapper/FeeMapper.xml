@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssm.mapper.FeeMapper">
+<!-- 查询SQL片段 -->
+	<sql id="select">
+		id,userid userId,name, time,money,type,remarks,state
+	</sql>
+	<!-- 筛选片段 -->
+	<sql id="serach">
+		where name like '%${keyword}%'
+	</sql>
+<!-- 添加费用-->
+	<insert id="insert" parameterType="fee">
+		INSERT INTO 
+		fee (id,userid,name,time,money,type,remarks,state)
+		VALUES(#{id},#{userId},#{name},#{time},#{money},#{type},#{remarks},#{state})
+	</insert>
+	<!-- 查询分页数据 -->
+	<select id="list" parameterType="com.ssm.util.Pagination"
+		resultType="fee">
+		SELECT <include refid="select"/>
+		from fee
+		 <include refid="serach"/>
+		 LIMIT #{skipNum},#{takeNum}
+	</select>
+	<!-- 查询分页条数 -->
+	<select id="count" parameterType="com.ssm.util.Pagination"
+		resultType="int">
+		SELECT COUNT(*) from fee
+		 <include refid="serach"/>
+		  LIMIT #{skipNum},#{takeNum}
+	</select>
+	<!-- 删除费用 -->
+	<delete id="delete" parameterType="fee">
+		DELETE FROM fee WHERE id=#{id}
+	</delete>
+	<!-- 根据Id查询费用 -->
+	<select id="findById" parameterType="string" resultType="fee">
+		select <include refid="select"/> from fee where id=#{id}
+	</select>
+	<!-- 更新费用 -->
+	<update id="update" parameterType="fee">
+		UPDATE fee set
+		name=#{name},
+		money=#{money},
+		type=#{type},
+		remarks=#{remarks},
+		state=#{state}
+		where id=#{id}
+	</update>
+</mapper>
