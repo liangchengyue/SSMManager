@@ -59,7 +59,7 @@ public class UserController {
 		 if (user2==null) {//登录失败
 			return "登录失败";
 		}else {//登录成功
-			request.getSession().setAttribute("user", user);
+			request.getSession().setAttribute("user", user2);
 			if (user2.getType()=="0") {//管理员登录
 				return "管理员";
 			}else {//普通用户登录

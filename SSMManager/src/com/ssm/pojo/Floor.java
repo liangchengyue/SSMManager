@@ -10,7 +10,7 @@ public class Floor {
 	private int id;
 	
 	//门牌号
-	private String number;
+	private String numbers;
 	
 	//面积
 	private double size;
@@ -27,11 +27,11 @@ public class Floor {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public String getNumber() {
-		return number;
+	public String getNumbers() {
+		return numbers;
 	}
-	public void setNumber(String number) {
-		this.number = number;
+	public void setNumbers(String numbers) {
+		this.numbers = numbers;
 	}
 	public double getSize() {
 		return size;

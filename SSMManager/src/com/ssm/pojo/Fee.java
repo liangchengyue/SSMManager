@@ -12,6 +12,7 @@ public class Fee {
 	private int id;
 	//用户id
 	private int userId;
+	private String userName;
 	//费用名称
 	private String name;
 	//时间
@@ -73,5 +74,12 @@ public class Fee {
 	public void setState(String state) {
 		this.state = state;
 	}
+	public String getUserName() {
+		return userName;
+	}
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+	
 	
 }

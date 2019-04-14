@@ -4,17 +4,17 @@
 <mapper namespace="com.ssm.mapper.FloorMapper">
 <!-- 查询SQL片段 -->
 	<sql id="select">
-		id,number,size, type,state
+		id,numbers,size, type,state
 	</sql>
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where number like '%${keyword}%' or size like '%${keyword}%' or type like '%${keyword}%' 
+		where numbers like '%${keyword}%' or size like '%${keyword}%' or type like '%${keyword}%' 
 	</sql>
 <!-- 添加楼房 -->
 	<insert id="insert" parameterType="floor">
 		INSERT INTO 
-		"floor" (id,number,size,type,state)
-		VALUES(#{id},#{number},#{size},#{type},#{state})
+		floor (id,numbers,size,type,state)
+		VALUES(#{id},#{numbers},#{size},#{type},#{state})
 	</insert>
 	<!-- 查询分页数据 -->
 	<select id="list" parameterType="com.ssm.util.Pagination"
@@ -42,9 +42,10 @@
 	<!-- 更新楼房 -->
 	<update id="update" parameterType="floor">
 		UPDATE floor set
-		number=#{number},
+		numbers=#{numbers},
 		size=#{size},
-		phone=#{phone}
+		type=#{type},
+		state=#{state}
 		where id=#{id}
 	</update>
 </mapper>

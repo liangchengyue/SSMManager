@@ -6,7 +6,7 @@
 %>
 
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html> 
+<html>
 <head>
 <base href="<%=basePath%>">
 <meta http-equiv="pragma" content="no-cache">
@@ -42,7 +42,7 @@ span.field-validation-error {
 				.querySelector('table[grid-manager="demo-ajaxPageCode"]');
 		table
 				.GM({
-					ajax_url : 'floor/list',
+					ajax_url : 'fee/list',
 					ajax_type : 'POST',
 					query : {
 						pluginId : 1,
@@ -52,20 +52,32 @@ span.field-validation-error {
 					supportCheckbox : false,
 					columnData : [
 							{
-								key : 'numbers',
-								text : '门牌号'
+								key : 'userName',
+								text : '用户'
 							},
 							{
-								key : 'size',
-								text : '面积'
+								key : 'name',
+								text : '费用名称'
 							},
 							{
-								key : 'type',
-								text : '户型'
+								key : 'time',
+								text : '日期'
+							},
+							{
+								key : 'money',
+								text : '金额'
 							},
 							{
 								key : 'state',
-								text : '是否入住'
+								text : '状态',
+								remind : 'the action',
+								template : function(action, rowObject) {
+									if(rowObject.state==0){
+										return "未交";
+									}else{
+										return '已交';
+									}
+								}
 							},
 							{
 								key : 'action',
@@ -89,7 +101,7 @@ span.field-validation-error {
 <body style="margin: 20px">
 	<div class="row">
 		<div class="col-md-10">
-			<h3>楼房列表</h3>
+			<h3>费用列表</h3>
 		</div>
 		<div class="col-md-1">
 			<div class="form-group">
@@ -122,7 +134,7 @@ span.field-validation-error {
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">添加楼房</h4>
+					<h4 class="modal-title">添加费用</h4>
 				</div>
 				<form id="data">
 					<div class="modal-body">
@@ -130,42 +142,49 @@ span.field-validation-error {
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="numbers">门牌号：</label> <input type="text"
-										class="form-control" name="numbers" id="numbers"
-										placeholder="门牌号" data-val="true"
-										data-val-required="请填写 &#39;门牌号&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="numbers"
+									<label for="name">费用名称：</label> <input type="text"
+										class="form-control" name="name" id="name" placeholder="费用名称"
+										data-val="true" data-val-required="请填写 &#39;费用名称&#39;。">
+									<span class="field-validation-error" data-valmsg-for="name"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="size">面积：</label> <input type="number"
-										class="form-control" name="size" id="size"
-										placeholder="面积(平方米)" data-val="true"
-										data-val-required="请填写 &#39;面积&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="size"
+									<label for="money">金额：</label> <input type="number"
+										class="form-control" name="money" id="money" placeholder="金额"
+										data-val="true" data-val-required="请填写 &#39;金额&#39;。">
+									<span class="field-validation-error" data-valmsg-for="money"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="type">户型：</label> <input type="text"
-										class="form-control" name="type" id="type" placeholder="户型 "
-										data-val="true" data-val-required="请填写 &#39;户型&#39;。">
+									<label for="type">类型：</label> <input type="text"
+										class="form-control" name="type" id="type" placeholder="类型 "
+										data-val="true" data-val-required="请填写 &#39;类型&#39;。">
 									<span class="field-validation-error" data-valmsg-for="type"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>
 							<div class="col-lg-12">
 								<div class="form-group">
-									<label for="state">是否入住：</label>
+									<label for="state">状态：</label>
 									<div class="form-group">
 										<label class="radio-inline"> <input type="radio"
-											value="否" name="state" checked="checked">未入住 <label
-											class="radio-inline"> <input type="radio" value="是"
-												name="state">已入住
+											value="0" name="state" checked="checked">未交 <label
+											class="radio-inline"> <input type="radio" value="1"
+												name="state">已交
 										</label>
+									</div>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group">
+									<label for="state">备注：</label>
+									<div class="form-group">
+										<textarea class="form-control" cols="" rows="6" name="remarks"
+											id="remarks"></textarea>
 									</div>
 								</div>
 							</div>
@@ -195,40 +214,67 @@ span.field-validation-error {
 						RefreshGridManagerList(keyword);
 					}
 				});
-		$("#add").click(function() {
-			if (!$('#data').valid()) {
-				return;
-			}
-			layui.use('layer', function() {
-				layer = layui.layer;
-				var id = $("#id").val();
-				var url;
-				var msg;
-				var data;
-				if (id == "") {
-					url = "floor/add";
-					msg = "添加成功";
-					data = $("#data").serialize();
-				} else {
-					url = "floor/update";
-					msg = "修改成功";
-					data = $("#data").serialize() + "&id=" + id;
-				}
+		$("#add")
+				.click(
+						function() {
+							if (!$('#data').valid()) {
+								return;
+							}
+							layui
+									.use(
+											'layer',
+											function() {
+												layer = layui.layer;
+												var id = $("#id").val();
+												var url;
+												var msg;
+												var data;
+												if (id == "") {
+													url = "fee/add";
+													msg = "添加成功";
+													data = $("#data")
+															.serialize();
+												} else {
+													url = "fee/update";
+													msg = "修改成功";
+													data = $("#data")
+															.serialize()
+															+ "&id=" + id;
+												}
 
-				$.ajax({
-					url : url,
-					type : "POST",
-					data : data,
-					success : function(data) {
-						$("#myModal").modal('hide');
-						layer.msg(msg);
-						$("#id").val("");
-						document.getElementById("data").reset();
-						RefreshGridManagerList("");
-					}
-				});
-			});
-		});
+												$
+														.ajax({
+															url : url,
+															type : "POST",
+															data : data,
+															success : function(
+																	data) {
+																if (data == "error") {
+																	layer
+																			.msg("请先登录");
+																	window.parent.location.href = "/SSMManager/user/toLogin";
+
+																} else {
+																	$(
+																			"#myModal")
+																			.modal(
+																					'hide');
+																	layer
+																			.msg(msg);
+																	$("#id")
+																			.val(
+																					"");
+																	document
+																			.getElementById(
+																					"data")
+																			.reset();
+																	RefreshGridManagerList("");
+																}
+
+															}
+														});
+											});
+						});
 
 		//删除
 		function deleteInfo(ob) {
@@ -239,7 +285,7 @@ span.field-validation-error {
 				}, function(index) {
 
 					$.ajax({
-						url : "floor/detele",
+						url : "fee/detele",
 						type : "POST",
 						data : {
 							'id' : ob
@@ -263,7 +309,7 @@ span.field-validation-error {
 		//更新信息
 		function updateInfo(id) {
 			$.ajax({
-				url : 'floor/findById',
+				url : 'fee/findById',
 				data : {
 					'id' : id
 				},
