@@ -17,11 +17,11 @@ import com.ssm.util.SecurityUtil;
 import com.ssm.util.Pagination;
 
 @Controller
-@RequestMapping("/notice")
-public class NoticeController {
+@RequestMapping("/owner")
+public class OwnerController {
 	@Autowired
-	@Qualifier("noticeService")
-	private NoticeService noticeService;
+	@Qualifier("ownerService")
+	private OwnerService ownerService;
 	
 	/**
 	 * 进入信息列表
@@ -29,7 +29,7 @@ public class NoticeController {
 	 */
 	@RequestMapping("/toList")
 	public String toList() {
-		return "jsp/notice/list";
+		return "jsp/owner/list";
 	};
 	
 	/**
@@ -40,7 +40,7 @@ public class NoticeController {
 	@RequestMapping("/list")
 	@ResponseBody
 	public String list(Pagination pagination){
-		String data=noticeService.list(pagination);
+		String data=ownerService.list(pagination);
 		return data;
 	}
 	/**
@@ -50,8 +50,8 @@ public class NoticeController {
 	 */
 	@RequestMapping("/detele")
 	@ResponseBody
-	public String delete(Notice data){
-		noticeService.delete(data);
+	public String delete(Owner data){
+		ownerService.delete(data);
 		return "ok";
 	}
 	
@@ -59,14 +59,14 @@ public class NoticeController {
 	@RequestMapping("/findById")
 	@ResponseBody
 	public String findUserById(String id) {
-		return noticeService.findById(id);
+		return ownerService.findById(id);
 	}
 	
 	//通过更新数据
 	@RequestMapping("/update")
 	@ResponseBody
-	public String update(Notice data) {
-		noticeService.update(data);
+	public String update(Owner data) {
+		ownerService.update(data);
 		return "";
 	}
 	
@@ -75,9 +75,9 @@ public class NoticeController {
 	 */
 	@RequestMapping("/add")
 	@ResponseBody
-	public String add(Notice data) {
+	public String add(Owner data) {
 		data.setTime(new Date());
-		noticeService.insert(data);
+		ownerService.insert(data);
 		return "ok";
 	}
 }

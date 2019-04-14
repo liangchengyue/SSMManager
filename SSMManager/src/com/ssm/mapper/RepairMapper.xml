@@ -1,31 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.ssm.mapper.NoticeMapper">
+<mapper namespace="com.ssm.mapper.RepairMapper">
 	<!-- 查询SQL片段 -->
 	<sql id="select">
-		id,title,content,time
+		id,userid,name,content,phone,starttime,endtime,money,remarks,pictures
 	</sql>
 	
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where title like '%${keyword}%' or content like
+		where name like '%${keyword}%' or content like
+		'%${keyword}%' or remarks like
 		'%${keyword}%'
 	</sql>
 	
 	<!-- 添加信息 -->
-	<insert id="insert" parameterType="notice">
+	<insert id="insert" parameterType="repair">
 		INSERT INTO
-		notice (id,title,content,time)
-		VALUES(#{id},#{title},#{content},#{time})
+		repair (id,userid,name,content,phone,starttime,endtime,money,remarks,pictures)
+		VALUES(#{id},#{userid},#{name},#{content},#{phone},#{starttime},#{endtime},#{money},#{remarks},#{pictures})
 	</insert>
 
 	<!-- 查询分页数据 -->
 	<select id="list" parameterType="com.ssm.util.Pagination"
-		resultType="notice">
+		resultType="repair">
 		SELECT
 		<include refid="select" />
-		from notice
+		from repair
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -33,29 +34,37 @@
 	<!-- 查询分页条数 -->
 	<select id="count" parameterType="com.ssm.util.Pagination"
 		resultType="int">
-		SELECT COUNT(*) from notice
+		SELECT COUNT(*) from repair
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
 
 	<!-- 删除信息 -->
-	<delete id="delete" parameterType="notice">
-		DELETE FROM notice WHERE
+	<delete id="delete" parameterType="repair">
+		DELETE FROM repair WHERE
 		id=#{id}
 	</delete>
 
 	<!-- 根据Id查询信息 -->
-	<select id="findById" parameterType="string" resultType="notice">
+	<select id="findById" parameterType="string" resultType="repair">
 		select
 		<include refid="select" />
-		from notice where id=#{id}
+		from repair where id=#{id}
 	</select>
 
 	<!-- 更新信息 -->
-	<update id="update" parameterType="notice">
-		UPDATE notice set
-		title=#{title},
-		content=#{content}
+	<update id="update" parameterType="repair">
+		UPDATE repair set
+		id=#{id},
+		userid=#{userid},
+		name=#{name},
+		content=#{content},
+		phone=#{phone},
+		starttime=#{starttime},
+		endtime=#{endtime},
+		money=#{money},
+		remarks=#{remarks},
+		pictures=#{pictures}
 		where id=#{id}
 	</update>
 </mapper>

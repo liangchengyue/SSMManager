@@ -23,5 +23,11 @@
 		class="com.ssm.service.impl.FeeServiceImpl" />
 	<bean name="floorService"
 		class="com.ssm.service.impl.FloorServiceImpl" />
+	<bean name="ownerService"
+		class="com.ssm.service.impl.OwnerServiceImpl" />
+	<bean name="repairService"
+		class="com.ssm.service.impl.RepairServiceImpl" />
+	<bean name="placeService"
+		class="com.ssm.service.impl.PlaceServiceImpl" />
 
 </beans>

@@ -10,13 +10,13 @@ public interface RepairMapper  {
 	 * 添加信息 
 	 * @param info
 	 */
-	public void insert(Notice notice );
+	public void insert(Repair data);
 	/**
 	 * 获取信息列表
 	 * @param pagination 分页条件
 	 * @return 用户 json 数据
 	 */
-	public List<Notice> list(Pagination pagination);
+	public List<Repair> list(Pagination pagination);
 	
 	/**
 	 * 获取个数
@@ -29,16 +29,16 @@ public interface RepairMapper  {
 	 * @param id
 	 * @return
 	 */
-	public void delete(Notice notice);
+	public void delete(Repair data);
 	/**
 	 * 根据Id查询信息
 	 * @param id 
 	 * @return 信息
 	 */
-	public Notice findById(String id);
+	public Repair findById(String id);
 	/**
 	 * 根据id修改信息
 	 * @param notice 信息
 	 */
-	public void update(Notice notice);
+	public void update(Repair data);
 }
