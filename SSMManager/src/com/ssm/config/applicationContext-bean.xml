@@ -11,13 +11,8 @@
         http://www.springframework.org/schema/tx
         http://www.springframework.org/schema/tx/spring-tx-4.0.xsd">
         <bean name="userService" class="com.ssm.service.impl.UserServiceImpl"/>
-	<!-- <bean name="userService" class="com.zyp.service.impl.UserServiceImpl"/>
-	<bean name="driverService" class="com.zyp.service.impl.DriverServiceImpl"/>
-	<bean name="vinfoService" class="com.zyp.service.impl.VInfoServiceImpl"/>
-	<bean name="drecordService" class="com.zyp.service.impl.DrecordServiceImpl"/>
-	<bean name="vmaintenanceService" class="com.zyp.service.impl.VMaintenanceServiceImpl"/>
-	<bean name="vinspectionService" class="com.zyp.service.impl.VInspectionServiceImpl"/>
-	<bean name="oilService" class="com.zyp.service.impl.OilServiceImpl"/>
-	<bean name="dictionarieService" class="com.zyp.service.impl.DictionarieServiceImpl"/>
-	 -->
+	<bean name="complaintService" class="com.ssm.service.impl.ComplaintServiceImpl"/>
+	<bean name="feeService"
+		class="com.ssm.service.impl.FeeServiceImpl" />
+	<bean name="floorService" class="com.ssm.service.impl.FloorServiceImpl"/>
 </beans>
