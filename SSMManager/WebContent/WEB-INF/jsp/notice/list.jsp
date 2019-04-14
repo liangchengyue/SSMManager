@@ -17,60 +17,51 @@
 <link href="resource/css/bootstrap.min.css" rel="stylesheet" />
 <link rel="stylesheet"
 	href="resource/plugins/grid_manager/GridManager.min.css">
+<link rel="stylesheet" href="resource/layui/css/layui.css">
+<link href="resource/css/bootstrap.min.css" rel="stylesheet" />
 <script src="resource/js/jquery.min.js"></script>
+<script src="resource/js/jquery.validate.min.js"></script>
+<script src="resource/js/jquery.validate.unobtrusive.min.js"></script>
 <script src="resource/js/bootstrap.min.js"></script>
 <script src="resource/js/common.js"></script>
 <script type="text/javascript"
 	src="resource/plugins/grid_manager/GridManager.min.js"></script>
+<script type="text/javascript" src="resource/layui/layui.js"></script>
+<style type="text/css">
+span.field-validation-error {
+	color: red;
+}
+</style>
 <script type="text/javascript">
 	$(function() {
-		init();
-		SelectInfo("oil/findIDAndNumberVinfo", "#vnumber");
-		SelectInfo("oil/findIDAndNumberUserId", "#userid");
-		SelectInfo("oil/findIDAndNumberDriver", "#driverid");
+		init("");
 	})
 
-	function init() {
+	function init(keyword) {
 		var table = document
 				.querySelector('table[grid-manager="demo-ajaxPageCode"]');
 		table
 				.GM({
-					ajax_url : 'oil/list',
+					ajax_url : 'notice/list',
 					ajax_type : 'POST',
 					query : {
 						pluginId : 1,
-						'keyword' : '123'
+						'keyword' : keyword
 					},
 					supportAjaxPage : true,
 					supportCheckbox : false,
 					columnData : [
 							{
-								key : 'driverid',
-								text : '驾驶员编号'
+								key : 'title',
+								text : '标题'
 							},
 							{
-								key : 'vnumber',
-								text : '车辆编号'
+								key : 'content',
+								text : '内容'
 							},
 							{
-								key : 'pretime',
-								text : '上次加油时间'
-							},
-							{
-								key : 'nowtime',
-								text : '本次加油时间'
-							},
-							{
-								key : 'preaoil',
-								text : '加油前油量'
-							},
-							{
-								key : 'oil',
-								text : '加油量'
-							},
-							{
-								key : 'oiltype',
-								text : '加油型号'
+								key : 'time',
+								text : '发布时间'
 							},
 							{
 								key : 'action',
@@ -79,6 +70,10 @@
 								text : '操作',
 								template : function(action, rowObject) {
 									return '<a style="color:#337ab7;" href="javascript:;" onclick="deleteInfo(\''
+											+ rowObject.id
+											+ '\')">删除</a>'
+											+ "| "
+											+ '<a style="color:#337ab7;" href="javascript:;" onclick="updateInfo(\''
 											+ rowObject.id + '\')">编辑</a>';
 								}
 							} ]
@@ -90,7 +85,7 @@
 <body style="margin: 20px">
 	<div class="row">
 		<div class="col-md-10">
-			<h3>油量列表</h3>
+			<h3>公告列表</h3>
 		</div>
 		<div class="col-md-1">
 			<div class="form-group">
@@ -112,6 +107,7 @@
 		</div>
 	</div>
 	<div style="clear: both;"></div>
+	<div class="cls"></div>
 	<table grid-manager="demo-ajaxPageCode"></table>
 	<!-- 添加、修改框 -->
 	<div class="modal fade" tabindex="-1" role="dialog" id="myModal">
@@ -122,81 +118,39 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h4 class="modal-title">添加油量记录</h4>
+					<h4 class="modal-title">添加公告</h4>
 				</div>
 				<form id="data">
-					<input type="hidden" id="id">
 					<div class="modal-body">
+						<input type="hidden" id="id">
 						<div class="row">
 							<div class="col-lg-12">
-								<div class="form-group" lang="driverid">
-									<label for="driverid">驾驶员编号：</label> </label> <select name="driverid"
-										id="driverid" class="selectpicker form-control"
-										data-live-search="true">
-										<option value="">请选择</option>
-									</select>
+								<div class="form-group" lang="username">
+									<label for="title">标题：</label> <input type="text"
+										class="form-control" name="title" id="title"
+										placeholder="标题" data-val="true"
+										data-val-required="请填写 &#39;标题&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="title"
+										data-valmsg-replace="true"></span>
 								</div>
 							</div>
 							<div class="col-lg-12">
-								<div class="form-group" lang="vnumber">
-									<label for="vnumber">车辆编号：</label> <select name="vnumber"
-										id="vnumber" class="selectpicker form-control"
-										data-live-search="true">
-										<option value="">请选择</option>
-									</select>
-
+								<div class="form-group" lang="content">
+									<label for="phone">内容：</label> <input type="textarea"
+										class="form-control" name="content" id="content"
+										placeholder="内容" data-val="true"
+										data-val-required="请填写 &#39;内容&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="内容"
+										data-valmsg-replace="true"></span>
 								</div>
 							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="pretime">
-									<label for="pretime">上次加油时间：</label> <input type="text"
-										class="form-control" name="pretime" id="pretime"
-										placeholder="上次加油时间">
-								</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">关闭</button>
+								<button type="button" class="btn btn-primary" id="add">保存</button>
 							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="nowtime">
-									<label for="nowtime">本次加油时间：</label> <input type="text"
-										class="form-control" name="nowtime" id="nowtime"
-										placeholder="本次加油时间">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="userid">
-									<label for="userid">用户编号：</label> <select name="userid"
-										id="userid" class="selectpicker form-control"
-										data-live-search="true">
-										<option value="">请选择</option>
-									</select>
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="preaoil">
-									<label for="preaoil">加油前油量：</label> <input type="text"
-										class="form-control" name="state" id="state"
-										placeholder="加油前油量">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="oil">
-									<label for="oil">加油量：</label> <input type="text"
-										class="form-control" name="oil" id="oil" placeholder="加油量">
-								</div>
-							</div>
-							<div class="col-lg-12">
-								<div class="form-group" lang="oiltype">
-									<label for="oiltype">加油型号：</label> <input type="text"
-										class="form-control" name="oiltype" id="oiltype"
-										placeholder="加油型号">
-								</div>
-							</div>
-
 						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default"
-								data-dismiss="modal">关闭</button>
-							<button type="button" class="btn btn-primary" id="add">保存</button>
-						</div>
+					</div>
 				</form>
 			</div>
 			<!-- /.modal-content -->
@@ -210,7 +164,18 @@
 					.append('<table grid-manager="demo-ajaxPageCode"></table>');
 			init(keyword);
 		}
+		$("#serach").click(
+				function() {
+					var keyword = $("#key").val();
+					if (keyword != undefined && keyword != null
+							&& keyword.trim() != "") {
+						RefreshGridManagerList(keyword);
+					}
+				});
 		$("#add").click(function() {
+			if (!$('#data').valid()) {
+				return;
+			}
 			layui.use('layer', function() {
 				layer = layui.layer;
 				var id = $("#id").val();
@@ -218,11 +183,11 @@
 				var msg;
 				var data;
 				if (id == "") {
-					url = "oil/regist";
+					url = "notice/add";
 					msg = "添加成功";
 					data = $("#data").serialize();
 				} else {
-					url = "oil/update";
+					url = "notice/update";
 					msg = "修改成功";
 					data = $("#data").serialize() + "&id=" + id;
 				}
@@ -251,19 +216,19 @@
 				}, function(index) {
 
 					$.ajax({
-						url : "oil/detele",
+						url : "notice/detele",
 						type : "POST",
 						data : {
 							'id' : ob
 						},
 						success : function(data) {
-							console.log(data);
 							if (data == 'ok') {
 								layer.msg('删除成功');
 								RefreshGridManagerList("");
 							}
 						}
 					});
+
 					layer.close(index);
 
 				});
@@ -275,7 +240,7 @@
 		//更新信息
 		function updateInfo(id) {
 			$.ajax({
-				url : 'oil/findOilById',
+				url : 'notice/findById',
 				data : {
 					'id' : id
 				},
@@ -286,6 +251,8 @@
 						$("#" + k).val(data[k]);
 					}
 					$("#myModal").modal('show');
+					$(".hiden").hide()
+					$("span.field-validation-error").hide();
 				}
 			});
 		}

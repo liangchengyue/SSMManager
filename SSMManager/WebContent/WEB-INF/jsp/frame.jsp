@@ -57,6 +57,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </li>
                     <li>
                     	<a class="J_menuItem" href="user/toList"><i class="fa fa-user"></i>用户列表</a>
+                    	<a class="J_menuItem" href="notice/toList"><i class="fa fa-user"></i>公告列表</a>
                     </li>
                     <li>
 						<!-- <a class="J_menuItem">

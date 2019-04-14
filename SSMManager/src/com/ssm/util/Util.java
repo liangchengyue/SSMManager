@@ -3,16 +3,13 @@ package com.ssm.util;
 import java.util.Date;
 import java.util.List;
 
-import com.zyp.util.GridManagerList;
-import com.zyp.util.JsonDateValueProcessor;
-
 import net.sf.json.JSONArray;
 import net.sf.json.JsonConfig;
 
 /**
  * 通用方法
  * 
- * @author 梁城月
+ * @author 
  * 
  * @param <T>
  *            对象
