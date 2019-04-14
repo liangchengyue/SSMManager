@@ -11,7 +11,7 @@ public class Owner {
 	//编号
 	private int id;
 	//楼层号
-	private int floorId;
+	private int floorid;
 	//身份证
 	private String idcard;
 	//家庭人数
@@ -27,11 +27,12 @@ public class Owner {
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getFloorId() {
-		return floorId;
+	
+	public int getFloorid() {
+		return floorid;
 	}
-	public void setFloorId(int floorId) {
-		this.floorId = floorId;
+	public void setFloorid(int floorid) {
+		this.floorid = floorid;
 	}
 	public String getIdcard() {
 		return idcard;

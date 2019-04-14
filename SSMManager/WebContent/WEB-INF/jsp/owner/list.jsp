@@ -135,11 +135,11 @@ span.field-validation-error {
 						
 							<div class="col-lg-12">
 								<div class="form-group" lang="content">
-									<label for="userid">用户：</label> <input type="textarea"
-										class="form-control" name="userid" id="userid"
+									<label for="userid">用户：</label> <input type="text"
+										class="form-control" name="id" id="id"
 										placeholder="用户" data-val="true"
 										data-val-required="请填写 &#39;用户&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="userid"
+										class="field-validation-error" data-valmsg-for="id"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>

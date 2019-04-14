@@ -126,7 +126,7 @@ span.field-validation-error {
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group" lang="content">
-									<label for="userid">用户：</label> <input type="textarea"
+									<label for="userid">用户：</label> <input type="text"
 										class="form-control" name="userid" id="userid"
 										placeholder="用户" data-val="true"
 										data-val-required="请填写 &#39;用户&#39;。"> <span
@@ -154,12 +154,15 @@ span.field-validation-error {
 								</div>
 							</div>
 							<div class="col-lg-12">
-								<div class="form-group" lang="content">
-									<label for="phone">费用：</label> <input type="textarea"
-										class="form-control" name="money" id="money" placeholder="费用"
-										data-val="true" data-val-required="请填写 &#39;费用&#39;。">
-									<span class="field-validation-error" data-valmsg-for="费用"
-										data-valmsg-replace="true"></span>
+								<div class="form-group">
+									<label for="state">是否使用：</label>
+									<div class="form-group">
+										<label class="radio-inline"> <input type="radio"
+											value="否" name="state" checked="checked">未使用 <label
+											class="radio-inline"> <input type="radio" value="是"
+												name="state">已使用
+										</label>
+									</div>
 								</div>
 							</div>
 							<div class="modal-footer">

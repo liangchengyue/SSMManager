@@ -52,17 +52,43 @@ span.field-validation-error {
 					supportCheckbox : false,
 					columnData : [
 							{
-								key : 'title',
-								text : '标题'
+								key : 'name',
+								text : '维修名称'
+							},
+							{
+								key : 'userid',
+								text : '用户'
 							},
 							{
 								key : 'content',
 								text : '内容'
 							},
 							{
-								key : 'time',
-								text : '发布时间'
+								key : 'phone',
+								text : '电话'
 							},
+
+							{
+								key : 'starttime',
+								text : '开始时间'
+							},
+							{
+								key : 'endtime',
+								text : '结束时间'
+							},
+							{
+								key : 'money',
+								text : '费用'
+							},
+							{
+								key : 'remarks',
+								text : '备注'
+							},
+							{
+								key : 'pictures',
+								text : '图片'
+							},
+
 							{
 								key : 'action',
 								remind : 'the action',
@@ -126,11 +152,20 @@ span.field-validation-error {
 						<div class="row">
 							<div class="col-lg-12">
 								<div class="form-group" lang="username">
-									<label for="title">标题：</label> <input type="text"
-										class="form-control" name="title" id="title"
-										placeholder="标题" data-val="true"
-										data-val-required="请填写 &#39;标题&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="title"
+									<label for="title">用户：</label> <input type="text"
+										class="form-control" name="userid" id="userid" placeholder="用户"
+										data-val="true" data-val-required="请填写 &#39;用户&#39;。">
+									<span class="field-validation-error" data-valmsg-for="userid"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group" lang="content">
+									<label for="phone">维修名称：</label> <input type="text"
+										class="form-control" name="name" id="name"
+										placeholder="内容" data-val="true"
+										data-val-required="请填写 &#39;维修名称&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="name"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>
@@ -140,7 +175,47 @@ span.field-validation-error {
 										class="form-control" name="content" id="content"
 										placeholder="内容" data-val="true"
 										data-val-required="请填写 &#39;内容&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="内容"
+										class="field-validation-error" data-valmsg-for="content"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group" lang="phone">
+									<label for="phone">联系电话：</label> <input type="text"
+										class="form-control" name="phone" id="phone"
+										placeholder="内容" data-val="true"
+										data-val-required="请填写 &#39;联系电话&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="phone"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group" lang="content">
+									<label for="phone">费用：</label> <input type="textarea"
+										class="form-control" name="money" id="money"
+										placeholder="费用" data-val="true"
+										data-val-required="请填写 &#39;费用&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="money"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group" lang="remarks">
+									<label for="phone">备注：</label> <input type="textarea"
+										class="form-control" name="remarks" id="remarks"
+										placeholder="备注" data-val="true"
+										data-val-required="请填写 &#39;备注&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="remarks"
+										data-valmsg-replace="true"></span>
+								</div>
+							</div>
+							<div class="col-lg-12">
+								<div class="form-group" lang="content">
+									<label for="phone">图片上传：</label> <input type="textarea"
+										class="form-control" name="pictures" id="pictures"
+										placeholder="图片上传" data-val="true"
+										data-val-required="请填写 &#39;图片上传&#39;。"> <span
+										class="field-validation-error" data-valmsg-for="pictures"
 										data-valmsg-replace="true"></span>
 								</div>
 							</div>

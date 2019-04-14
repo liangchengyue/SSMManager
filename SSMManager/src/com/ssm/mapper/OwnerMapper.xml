@@ -17,7 +17,7 @@
 	<insert id="insert" parameterType="owner">
 		INSERT INTO
 		owner (id,floorid,idcard,number,time,remarks)
-		VALUES(#{id},#{floorid},#{idcard},#{number},#{time},,#{remarks})
+		VALUES(#{id},#{floorid},#{idcard},#{number},#{time},#{remarks})
 	</insert>
 
 	<!-- 查询分页数据 -->

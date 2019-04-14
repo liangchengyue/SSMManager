@@ -11,7 +11,7 @@ public class Repair {
 	//编号
 	private int id;
 	//用户id
-	private int userId;
+	private int userid;
 	//维修描述
 	private String content;
 	//电话
@@ -19,25 +19,34 @@ public class Repair {
 	//名称
 	private String name;
 	//开始时间
-	private Date startTime;
+	private Date starttime;
 	//结束时间
-	private Date endTime;
+	private Date endtime;
 	//备注
 	private String remarks;
 	//图片
-	private String picture;
+	private String pictures;
 	
+	private Double money;
+	
+	public Double getMoney() {
+		return money;
+	}
+	public void setMoney(Double money) {
+		this.money = money;
+	}
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
-	public int getUserId() {
-		return userId;
+	
+	public int getUserid() {
+		return userid;
 	}
-	public void setUserId(int userId) {
-		this.userId = userId;
+	public void setUserid(int userid) {
+		this.userid = userid;
 	}
 	public String getContent() {
 		return content;
@@ -57,17 +66,18 @@ public class Repair {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Date getStartTime() {
-		return startTime;
+	
+	public Date getStarttime() {
+		return starttime;
 	}
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
+	public void setStarttime(Date starttime) {
+		this.starttime = starttime;
 	}
-	public Date getEndTime() {
-		return endTime;
+	public Date getEndtime() {
+		return endtime;
 	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setEndtime(Date endtime) {
+		this.endtime = endtime;
 	}
 	public String getRemarks() {
 		return remarks;
@@ -75,11 +85,10 @@ public class Repair {
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
-	public String getPicture() {
-		return picture;
+	public String getPictures() {
+		return pictures;
 	}
-	public void setPicture(String picture) {
-		this.picture = picture;
+	public void setPictures(String pictures) {
+		this.pictures = pictures;
 	}
-	
 }

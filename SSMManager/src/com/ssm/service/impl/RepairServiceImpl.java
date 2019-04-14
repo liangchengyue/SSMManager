@@ -1,5 +1,6 @@
 package com.ssm.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,8 @@ public class RepairServiceImpl implements RepairService {
 	private RepairMapper repairMapper;
 	
 	public void insert(Repair info) {
+		info.setStarttime(new Date());
+		info.setEndtime(new Date());
 		repairMapper.insert(info);
 	}
 
