@@ -56,7 +56,7 @@ span.field-validation-error {
 								text : '维修名称'
 							},
 							{
-								key : 'userid',
+								key : 'userName',
 								text : '用户'
 							},
 							{

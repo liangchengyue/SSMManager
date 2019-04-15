@@ -4,13 +4,13 @@
 <mapper namespace="com.ssm.mapper.RepairMapper">
 	<!-- 查询SQL片段 -->
 	<sql id="select">
-		id,userid,name,content,phone,starttime,endtime,money,remarks,pictures
+		r.id id,userid,r.name name,content,r.phone phone,starttime,endtime,money,remarks,pictures,u.name userName
 	</sql>
 	
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where name like '%${keyword}%' or content like
-		'%${keyword}%' or remarks like
+		where r.name like '%${keyword}%' or content like
+		'%${keyword}%' or remarks like '%${keyword}%' or u.name like
 		'%${keyword}%'
 	</sql>
 	
@@ -26,7 +26,8 @@
 		resultType="repair">
 		SELECT
 		<include refid="select" />
-		from repair
+		from repair r JOIN `user` u
+		on r.userid=u.id
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -34,7 +35,8 @@
 	<!-- 查询分页条数 -->
 	<select id="count" parameterType="com.ssm.util.Pagination"
 		resultType="int">
-		SELECT COUNT(*) from repair
+		SELECT COUNT(*) from repair r JOIN `user` u
+		on r.userid=u.id
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -49,7 +51,8 @@
 	<select id="findById" parameterType="string" resultType="repair">
 		select
 		<include refid="select" />
-		from repair where id=#{id}
+		from repair r JOIN `user` u
+		on r.userid=u.id  where r.id=#{id}
 	</select>
 
 	<!-- 更新信息 -->

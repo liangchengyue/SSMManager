@@ -4,12 +4,13 @@
 <mapper namespace="com.ssm.mapper.PlaceMapper">
 	<!-- 查询SQL片段 -->
 	<sql id="select">
-		id,address,money,userid,state
+		p.id id,address,money,userid,state,u.name userName
 	</sql>
 	
 	<!-- 筛选片段 -->
 	<sql id="serach">
 		where address like '%${keyword}%' or state like
+		'%${keyword}%' or u.name like
 		'%${keyword}%'
 	</sql>
 	
@@ -25,7 +26,8 @@
 		resultType="place">
 		SELECT
 		<include refid="select" />
-		from place
+		from place p JOIN `user` u
+		on p.userid=u.id
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -33,7 +35,8 @@
 	<!-- 查询分页条数 -->
 	<select id="count" parameterType="com.ssm.util.Pagination"
 		resultType="int">
-		SELECT COUNT(*) from place
+		SELECT COUNT(*) from place p JOIN `user` u
+		on p.userid=u.id
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -48,7 +51,8 @@
 	<select id="findById" parameterType="string" resultType="place">
 		select
 		<include refid="select" />
-		from place where id=#{id}
+		from place p JOIN `user` u
+		on p.userid=u.id where p.id=#{id}
 	</select>
 
 	<!-- 更新信息 -->

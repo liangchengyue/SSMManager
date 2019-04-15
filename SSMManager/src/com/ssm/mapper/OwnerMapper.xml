@@ -4,12 +4,14 @@
 <mapper namespace="com.ssm.mapper.OwnerMapper">
 	<!-- 查询SQL片段 -->
 	<sql id="select">
-		id,floorid,idcard,number,time,remarks
+		o.id id,floorid,idcard,o.number number,time,remarks,u.name userName ,f.numbers floorName
 	</sql>
 	
 	<!-- 筛选片段 -->
 	<sql id="serach">
 		where idcard like '%${keyword}%' or remarks like
+		'%${keyword}%' or u.name like
+		'%${keyword}%' or f.numbers like
 		'%${keyword}%'
 	</sql>
 	
@@ -25,7 +27,8 @@
 		resultType="owner">
 		SELECT
 		<include refid="select" />
-		from owner
+		from owner o JOIN `user` u
+		on o.id=u.id join floor f on f.id=o.floorid
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -33,7 +36,8 @@
 	<!-- 查询分页条数 -->
 	<select id="count" parameterType="com.ssm.util.Pagination"
 		resultType="int">
-		SELECT COUNT(*) from owner
+		SELECT COUNT(*) from owner o JOIN `user` u
+		on o.id=u.id join floor f on f.id=o.floorid
 		<include refid="serach" />
 		LIMIT #{skipNum},#{takeNum}
 	</select>
@@ -48,7 +52,8 @@
 	<select id="findById" parameterType="string" resultType="owner">
 		select
 		<include refid="select" />
-		from owner where id=#{id}
+		from owner o JOIN `user` u
+		on o.id=u.id join floor f on f.id=o.floorid where o.id=#{id}
 	</select>
 
 	<!-- 更新信息 -->

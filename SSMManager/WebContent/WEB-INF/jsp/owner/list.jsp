@@ -52,8 +52,12 @@ span.field-validation-error {
 					supportCheckbox : false,
 					columnData : [
 							{
-								key : 'floorid',
-								text : '住户'
+								key : 'floorName',
+								text : '门牌号'
+							},
+							{
+								key : 'userName',
+								text : '用户'
 							},
 							{
 								key : 'idcard',

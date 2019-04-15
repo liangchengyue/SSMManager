@@ -56,9 +56,14 @@ span.field-validation-error {
 								text : '地址'
 							},
 							{
+								key : 'userName',
+								text : '用户'
+							},
+							{
 								key : 'money',
 								text : '费用'
 							},
+							
 							{
 								key : 'state',
 								text : '状态'
