@@ -9,8 +9,10 @@ import com.ssm.mapper.FloorMapper;
 import com.ssm.pojo.Floor;
 import com.ssm.service.FloorService;
 import com.ssm.util.Pagination;
+import com.ssm.util.SelectCustom;
 import com.ssm.util.Util;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class FloorServiceImpl implements FloorService {
@@ -37,6 +39,12 @@ public class FloorServiceImpl implements FloorService {
 	}
 	public void update(Floor floor) {
 		floorMapper.update(floor);
+	}
+	
+	public String findIDAndNumber() {
+		List<SelectCustom> list=floorMapper.findIDAndNumber();
+		String data=JSONArray.fromObject(list).toString();
+		return data;
 	}
 	
 }

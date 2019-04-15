@@ -54,4 +54,7 @@
 		phone=#{phone}
 		where id=#{id}
 	</update>
+	<select id="findIDAndNumber" resultType="com.ssm.util.SelectCustom" >
+	SELECT id value,`name` name FROM `user`
+	</select>
 </mapper>

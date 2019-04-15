@@ -35,6 +35,8 @@ span.field-validation-error {
 <script type="text/javascript">
 	$(function() {
 		init("");
+		SelectInfo("common/findIDAndNumberUserId", "#userid");
+		SelectInfo("common/findIDAndNumberUserId2", "#floorid");
 	})
 
 	function init(keyword) {
@@ -136,29 +138,24 @@ span.field-validation-error {
 					<div class="modal-body">
 						<input type="hidden" id="id">
 						<div class="row">
-						
 							<div class="col-lg-12">
-								<div class="form-group" lang="content">
-									<label for="userid">用户：</label> <input type="text"
-										class="form-control" name="id" id="id"
-										placeholder="用户" data-val="true"
-										data-val-required="请填写 &#39;用户&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="id"
-										data-valmsg-replace="true"></span>
+								<div class="form-group" lang="userid">
+									<label for="driverid">用户：</label> </label> <select name="userid"
+										id="userid" class="selectpicker form-control"
+										data-live-search="true">
+										<option value="">请选择</option>
+									</select>
 								</div>
 							</div>
-							
 							<div class="col-lg-12">
-								<div class="form-group" lang="content">
-									<label for="userid">楼房：</label> <input type="textarea"
-										class="form-control" name="floorid" id="floorid"
-										placeholder="楼房" data-val="true"
-										data-val-required="请填写 &#39;楼房&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="floorid"
-										data-valmsg-replace="true"></span>
+								<div class="form-group" lang="floorid">
+									<label for="floorid">楼房：</label> </label> <select name="floorid"
+										id="floorid" class="selectpicker form-control"
+										data-live-search="true">
+										<option value="">请选择</option>
+									</select>
 								</div>
 							</div>
-							
 							<div class="col-lg-12">
 								<div class="form-group" lang="username">
 									<label for="title">身份证：</label> <input type="text"
