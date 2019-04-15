@@ -9,8 +9,10 @@ import com.ssm.mapper.UserMapper;
 import com.ssm.pojo.User;
 import com.ssm.service.UserService;
 import com.ssm.util.Pagination;
+import com.ssm.util.SelectCustom;
 import com.ssm.util.Util;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
 
 public class UserServiceImpl implements UserService {
@@ -40,6 +42,12 @@ public class UserServiceImpl implements UserService {
 	}
 	public void update(User user) {
 		userMapper.update(user);
+	}
+	
+	public String findIDAndNumber() {
+		List<SelectCustom> list=userMapper.findIDAndNumber();
+		String data=JSONArray.fromObject(list).toString();
+		return data;
 	}
 	
 }

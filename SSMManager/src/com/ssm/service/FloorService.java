@@ -33,5 +33,11 @@ public interface FloorService {
 	 * @param user 楼房信息
 	 */
 	public void update(Floor floor);
+	
+	/**
+	 * 获取下拉信息
+	 * @return
+	 */
+	public String findIDAndNumber();
 
 }

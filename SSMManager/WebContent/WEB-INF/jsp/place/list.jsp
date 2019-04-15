@@ -35,6 +35,7 @@ span.field-validation-error {
 <script type="text/javascript">
 	$(function() {
 		init("");
+		SelectInfo("common/findIDAndNumberUserId", "#userid");
 	})
 
 	function init(keyword) {
@@ -130,13 +131,12 @@ span.field-validation-error {
 						<input type="hidden" id="id">
 						<div class="row">
 							<div class="col-lg-12">
-								<div class="form-group" lang="content">
-									<label for="userid">用户：</label> <input type="text"
-										class="form-control" name="userid" id="userid"
-										placeholder="用户" data-val="true"
-										data-val-required="请填写 &#39;用户&#39;。"> <span
-										class="field-validation-error" data-valmsg-for="userid"
-										data-valmsg-replace="true"></span>
+								<div class="form-group" lang="userid">
+									<label for="driverid">用户：</label> </label> <select name="userid"
+										id="userid" class="selectpicker form-control"
+										data-live-search="true">
+										<option value="">请选择</option>
+									</select>
 								</div>
 							</div>
 							<div class="col-lg-12">

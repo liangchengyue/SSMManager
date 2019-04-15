@@ -47,5 +47,11 @@ public interface UserService {
 	 * @param user 用户信息
 	 */
 	public void update(User user);
+	
+	/**
+	 * 获取用户下拉信息
+	 * @return
+	 */
+	public String findIDAndNumber();
 
 }

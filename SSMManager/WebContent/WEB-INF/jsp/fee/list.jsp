@@ -72,9 +72,9 @@ span.field-validation-error {
 								text : '状态',
 								remind : 'the action',
 								template : function(action, rowObject) {
-									if(rowObject.state==0){
+									if (rowObject.state == 0) {
 										return "未交";
-									}else{
+									} else {
 										return '已交';
 									}
 								}

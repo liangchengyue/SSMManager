@@ -48,4 +48,7 @@
 		state=#{state}
 		where id=#{id}
 	</update>
+	<select id="findIDAndNumber" resultType="com.ssm.util.SelectCustom" >
+	SELECT id value,numbers name FROM floor
+	</select>
 </mapper>
