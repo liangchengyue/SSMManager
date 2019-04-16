@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.ssm.service.FloorService;
 import com.ssm.service.OwnerService;
+import com.ssm.service.PlaceService;
 import com.ssm.service.UserService;
 
 import com.ssm.pojo.User;
@@ -23,6 +24,9 @@ public class CommonController {
 	@Autowired
 	@Qualifier("floorService")
 	private FloorService floorService;
+	@Autowired
+	@Qualifier("placeService")
+	private PlaceService placeService;
 	
 	@RequestMapping("/toFrame")
 	public String toFrame(HttpServletRequest request) {
@@ -52,5 +56,15 @@ public class CommonController {
 	@ResponseBody
 	public String GetUserSelection2() {
 		return floorService.findIDAndNumber();
+	}
+	@RequestMapping("/findFloorSelect")
+	@ResponseBody
+	public String findFloorSelect() {
+		return floorService.findFloorSelect();
+	}
+	@RequestMapping("/findPlaceSelect")
+	@ResponseBody
+	public String findPlaceSelect() {
+		return placeService.findPlaceSelect();
 	}
 }

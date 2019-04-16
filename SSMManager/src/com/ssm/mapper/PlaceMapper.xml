@@ -64,4 +64,8 @@
 		state=#{state}
 		where id=#{id}
 	</update>
+	<!-- 获取未使用的车位下拉列表 -->
+	<select id="findPlaceSelect" resultType="com.ssm.util.SelectCustom">
+	SELECT id value,CONCAT(money,':',address) name FROM place WHERE state='否'
+	</select>
 </mapper>

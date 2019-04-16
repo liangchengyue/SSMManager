@@ -121,4 +121,15 @@ public class UserController {
 	userService.update(user);
 		return "";
 	}
+	//完善个人信息
+	@RequestMapping("/toUpdate")
+	public String toUpdate() {
+		return "jsp/user/update";
+	}
+	@RequestMapping("/findUserInfo")
+	@ResponseBody
+	public String findUserInfo(HttpServletRequest request) {
+		User user=(User)request.getSession().getAttribute("user");
+		return userService.findUserInfo(user);
+	}
 }

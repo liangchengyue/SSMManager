@@ -1,7 +1,10 @@
 package com.ssm.service;
 
+import java.util.List;
+
 import com.ssm.pojo.Floor;
 import com.ssm.util.Pagination;
+import com.ssm.util.SelectCustom;
 
 public interface FloorService {
 	/**
@@ -39,5 +42,9 @@ public interface FloorService {
 	 * @return
 	 */
 	public String findIDAndNumber();
-
+	/**
+	 * 获取未使用的房屋
+	 * @return
+	 */
+	public String findFloorSelect();
 }

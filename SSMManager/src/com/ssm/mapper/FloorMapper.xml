@@ -51,4 +51,8 @@
 	<select id="findIDAndNumber" resultType="com.ssm.util.SelectCustom" >
 	SELECT id value,numbers name FROM floor
 	</select>
+	<!-- 获取未使用的房屋 -->
+	<select id="findFloorSelect" resultType="com.ssm.util.SelectCustom">
+	SELECT id value ,CONCAT(numbers,":",type) name FROM floor WHERE state='是'
+	</select>
 </mapper>

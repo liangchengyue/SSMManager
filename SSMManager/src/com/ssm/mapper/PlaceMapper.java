@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.ssm.pojo.*;
 import com.ssm.util.Pagination;
+import com.ssm.util.SelectCustom;
 
 public interface PlaceMapper  {
 	/**
@@ -41,4 +42,9 @@ public interface PlaceMapper  {
 	 * @param notice 信息
 	 */
 	public void update(Place data);
+	/**
+	 * 获取空闲车位下拉列表
+	 * @return
+	 */
+	public List<SelectCustom> findPlaceSelect();
 }
