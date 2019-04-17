@@ -7,5 +7,6 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <!-- 配置别名 -->
     <typeAliases>
         <package name="com.ssm.pojo"/>
+        <package name="com.ssm.vo"/>
     </typeAliases>
 </configuration>

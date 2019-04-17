@@ -10,9 +10,12 @@ import com.ssm.pojo.*;
 import com.ssm.service.*;
 import com.ssm.service.*;
 import com.ssm.util.Pagination;
+import com.ssm.util.SelectCustom;
 import com.ssm.util.Util;
 
+import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
+
 
 public class PlaceServiceImpl implements PlaceService {
 	@Autowired
@@ -43,6 +46,12 @@ public class PlaceServiceImpl implements PlaceService {
 	
 	public void update(Place data) {
 		placeMapper.update(data);
+	}
+
+	public String findPlaceSelect() {
+		List<SelectCustom> list=placeMapper.findPlaceSelect();
+		String data=JSONArray.fromObject(list).toString();
+		return data;
 	}
 	
 }

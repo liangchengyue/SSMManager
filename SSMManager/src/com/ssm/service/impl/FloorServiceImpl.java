@@ -46,5 +46,11 @@ public class FloorServiceImpl implements FloorService {
 		String data=JSONArray.fromObject(list).toString();
 		return data;
 	}
+	public String findFloorSelect() {
+		List<SelectCustom> list=floorMapper.findFloorSelect();
+		String data=JSONArray.fromObject(list).toString();
+		return data;
+	
+	}
 	
 }

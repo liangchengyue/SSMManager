@@ -5,6 +5,7 @@ import java.util.List;
 import com.ssm.pojo.User;
 import com.ssm.util.Pagination;
 import com.ssm.util.SelectCustom;
+import com.ssm.vo.UserInfo;
 
 public interface UserMapper  {
 	/**
@@ -51,4 +52,10 @@ public interface UserMapper  {
 	
 	//获取用户信息
 	public List<SelectCustom> findIDAndNumber();
+	/**
+	 * 获取用户信息
+	 * @param user
+	 * @return
+	 */
+	public UserInfo findUserInfo(User user);
 }

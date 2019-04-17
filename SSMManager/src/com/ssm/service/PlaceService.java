@@ -1,7 +1,10 @@
 package com.ssm.service;
 
+import java.util.List;
+
 import com.ssm.pojo.Place;
 import com.ssm.util.Pagination;
+import com.ssm.util.SelectCustom;
 
 public interface PlaceService {
 	/**
@@ -40,5 +43,9 @@ public interface PlaceService {
 	 * @param 信息
 	 */
 	public void update(Place data);
-
+	/**
+	 * 获取空闲车位下拉列表
+	 * @return
+	 */
+	public String findPlaceSelect();
 }

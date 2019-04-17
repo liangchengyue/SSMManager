@@ -57,4 +57,19 @@
 	<select id="findIDAndNumber" resultType="com.ssm.util.SelectCustom" >
 	SELECT id value,`name` name FROM `user`
 	</select>
+	<!-- 查询用户信息 -->
+	<select id="findUserInfo" parameterType="user" resultType="UserInfo">
+		SELECT u.id userid,u.username username,u.name uname,u.age age, u.sex sex,u.phone phone,
+		o.id oid,o.idcard idcard,o.number number,o.time time,
+		f.id fid,f.numbers fnumber,f.size fsize,f.type ftype, 
+		p.id pid, p.address address,p.money money
+		FROM `user` u
+		left JOIN `owner` o
+		on o.id=u.id
+		left JOIN floor f
+		on o.floorid=f.id
+		left join place p
+		on p.userid=u.id
+		WHERE u.id=#{id}
+	</select>
 </mapper>

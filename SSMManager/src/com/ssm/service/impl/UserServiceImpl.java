@@ -11,6 +11,7 @@ import com.ssm.service.UserService;
 import com.ssm.util.Pagination;
 import com.ssm.util.SelectCustom;
 import com.ssm.util.Util;
+import com.ssm.vo.UserInfo;
 
 import net.sf.json.JSONArray;
 import net.sf.json.JSONObject;
@@ -48,6 +49,11 @@ public class UserServiceImpl implements UserService {
 		List<SelectCustom> list=userMapper.findIDAndNumber();
 		String data=JSONArray.fromObject(list).toString();
 		return data;
+	}
+	public String findUserInfo(User user) {
+		UserInfo info=userMapper.findUserInfo(user);
+		JSONObject jsonObject=JSONObject.fromObject(info);
+		return jsonObject.toString();
 	}
 	
 }

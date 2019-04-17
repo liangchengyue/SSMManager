@@ -2,6 +2,7 @@ package com.ssm.service;
 
 import com.ssm.pojo.User;
 import com.ssm.util.Pagination;
+import com.ssm.vo.UserInfo;
 
 public interface UserService {
 	/**
@@ -53,5 +54,10 @@ public interface UserService {
 	 * @return
 	 */
 	public String findIDAndNumber();
-
+	/**
+	 * 获取用户信息
+	 * @param user
+	 * @return
+	 */
+	public String findUserInfo(User user);
 }

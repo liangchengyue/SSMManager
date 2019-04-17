@@ -56,4 +56,9 @@ public interface FloorMapper {
 
 	// 获取用户信息
 	public List<SelectCustom> findIDAndNumber();
+	/**
+	 * 获取未使用的房屋
+	 * @return
+	 */
+	public List<SelectCustom> findFloorSelect();
 }
