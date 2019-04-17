@@ -47,7 +47,7 @@
 <body class="signin">
     <div class="signinpanel">
         <div class="row">
-            <div class="col-sm-7">
+            <div class="col-sm-6">
                 <div class="signin-info">
                     <div class="logopanel m-b">
                         <img src="../resource/img/home.png" width="60px" />
@@ -62,7 +62,7 @@
                     <strong>还没有账号？ <a href="toRegister">立即注册&raquo;</a></strong>
                 </div>
             </div>
-            <div class="col-sm-5">
+            <div class="col-sm-6">
                 <form method="post" action="#">
                     <h4 class="no-margins">登录：</h4>
                     <p class="m-t-md">登录小区物业管理系统</p>
@@ -70,11 +70,6 @@
                     <input type="password" class="form-control pword m-b" id="password" placeholder="密码" />
                  <button class="btn btn-success btn-block" type="button" id="login">登录</button>
                 </form>
-            </div>
-        </div>
-        <div class="signup-footer" >
-            <div class="pull-left" style="text-align: center;">
-                &copy; 2018-2019 小区物业管理系统
             </div>
         </div>
     </div>
