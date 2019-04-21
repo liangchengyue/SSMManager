@@ -37,7 +37,7 @@ public class UserInfo {
 	//停车位置
 	private String address;
 	//停车位费用
-	private double monney;
+	private double money;
 	
 	public int getUserid() {
 		return userid;
@@ -135,10 +135,10 @@ public class UserInfo {
 	public void setAddress(String address) {
 		this.address = address;
 	}
-	public double getMonney() {
-		return monney;
+	public double getMoney() {
+		return money;
 	}
-	public void setMonney(double monney) {
-		this.monney = monney;
+	public void setMoney(double money) {
+		this.money = money;
 	}
  }

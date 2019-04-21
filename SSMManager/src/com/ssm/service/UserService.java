@@ -59,5 +59,10 @@ public interface UserService {
 	 * @param user
 	 * @return
 	 */
-	public String findUserInfo(User user);
+	public UserInfo findUserInfo(User user);
+	/**
+	 * 修改个人信息
+	 * @param userInfo
+	 */
+	public User updateInfo(UserInfo userInfo);
 }

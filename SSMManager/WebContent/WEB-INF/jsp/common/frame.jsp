@@ -51,7 +51,7 @@
 						</span>
 						</a>
 						<ul class="dropdown-menu animated fadeInRight m-t-xs">
-							<li><a class="J_menuItem" href="center.html">个人资料</a></li>
+							<li><a class="J_menuItem" href="/SSMManager/user/toInfo">个人资料</a></li>
 							<li><a href="/SSMManager/user/loginOut">安全退出</a></li>
 						</ul>
 					</div>

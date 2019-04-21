@@ -5,6 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <link href="../resource/css/bootstrap.min.css?v=3.3.5" rel="stylesheet">
+<link rel="stylesheet" href="../resource/layui/css/layui.css">
+<style type="text/css">
+span.field-validation-error {
+	color: red;
+}
+
+</style>
 </head>
 <body>
 	<div class="modal-header">
@@ -80,19 +87,23 @@
 				<div class="col-lg-12" id="p">
 					<div class="form-group">
 						<label for="driverid">停车位：</label> </label> <select name="pid" id="pid"
-							class="selectpicker form-control" data-live-search="true">
+							class="selectpicker form-control" data-live-search="true" data-val="true" data-val-required="请选择 &#39;停车位&#39;。">
 						</select>
+						<span class="field-validation-error" data-valmsg-for="pid"
+							data-valmsg-replace="true"></span>
 					</div>
 				</div>
 				<div class="col-lg-12" id="f">
 					<div class="form-group">
 						<label for="driverid">房屋：</label> </label> <select name="fid" id="fid"
-							class="selectpicker form-control" data-live-search="true">
+							class="selectpicker form-control" data-live-search="true" data-val="true" data-val-required="请选择 &#39;房间&#39;。">
 						</select>
+						<span class="field-validation-error" data-valmsg-for="fid"
+							data-valmsg-replace="true"></span>
 					</div>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+					<button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
 					<button type="button" class="btn btn-primary" id="add">保存</button>
 				</div>
 	</form>
@@ -100,6 +111,7 @@
 	<script src="../resource/js/jquery.validate.min.js"></script>
 	<script src="../resource/js/jquery.validate.unobtrusive.min.js"></script>
 	<script src="../resource/js/common.js"></script>
+	<script type="text/javascript" src="../resource/layui/layui.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			SelectInfo("../common/findFloorSelect", "#fid");
@@ -119,6 +131,26 @@
 						$("#p").hide()
 					}
 				}
+			});
+			$("#add").click(function(){
+				if (!$('#data').valid()) {
+					return;
+				}
+				layui.use('layer', function() {
+					layer = layui.layer;
+					var url="updateInfo";
+					var msg="修改成功";
+					var data= $("#data").serialize();
+					$.ajax({
+						url : url,
+						type : "POST",
+						data : data,
+						success : function(data) {
+							layer.msg(msg);
+							$("#id").val("");
+						}
+					});
+				});
 			});
 		})
 	</script>

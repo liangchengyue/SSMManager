@@ -23,6 +23,16 @@ public class Owner {
 	private String remarks;
 	// 用户名
 	private String userName;
+	//停车位
+	private int  placeid;
+
+	public int getPlaceid() {
+		return placeid;
+	}
+
+	public void setPlaceid(int placeid) {
+		this.placeid = placeid;
+	}
 
 	public String getUserName() {
 		return userName;

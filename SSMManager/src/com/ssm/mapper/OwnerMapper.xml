@@ -18,8 +18,8 @@
 	<!-- 添加信息 -->
 	<insert id="insert" parameterType="owner">
 		INSERT INTO
-		owner (id,floorid,idcard,number,time,remarks)
-		VALUES(#{id},#{floorid},#{idcard},#{number},#{time},#{remarks})
+		owner (id,floorid,idcard,number,time,remarks,placeid)
+		VALUES(#{id},#{floorid},#{idcard},#{number},#{time},#{remarks},#{placeid})
 	</insert>
 
 	<!-- 查询分页数据 -->
@@ -62,7 +62,8 @@
 		floorid=#{floorid},
 		idcard=#{idcard},
 		number=#{number},
-		remarks=#{remarks}
+		remarks=#{remarks},
+		placeid=#{placeid}
 		where id=#{id}
 	</update>
 </mapper>

@@ -69,7 +69,7 @@
 		left JOIN floor f
 		on o.floorid=f.id
 		left join place p
-		on p.userid=u.id
+		on p.id=o.placeid
 		WHERE u.id=#{id}
 	</select>
 </mapper>
