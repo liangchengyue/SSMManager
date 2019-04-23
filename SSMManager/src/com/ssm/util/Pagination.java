@@ -6,9 +6,17 @@ public class Pagination {
 	private String keyword;
 	private int skipNum = 1;// 当前第几条记录开始
 	private int takeNum = 10;// 从开始记录开始每页显示条数
-
+	private int userId;
 	private int count;
 	private int pageCount;
+
+	public int getUserId() {
+		return userId;
+	}
+
+	public void setUserId(int userId) {
+		this.userId = userId;
+	}
 
 	public int getpSize() {
 		return pSize;
@@ -53,4 +61,9 @@ public class Pagination {
 	public int getPageCount() {
 		return (int) Math.ceil((float) count / pSize);
 	}
+
+	public void setTakeNum(int takeNum) {
+		this.takeNum = takeNum;
+	}
+	
 }

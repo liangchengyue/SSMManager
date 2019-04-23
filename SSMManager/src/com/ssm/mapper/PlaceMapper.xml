@@ -6,18 +6,20 @@
 	<sql id="select">
 		p.id id,address,money,userid,state,u.name userName
 	</sql>
-	
+
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where address like '%${keyword}%' or state like
+		where 
+		address like '%${keyword}%' or state like
 		'%${keyword}%' or u.name like
 		'%${keyword}%'
 	</sql>
-	
+
 	<!-- 添加信息 -->
 	<insert id="insert" parameterType="place">
 		INSERT INTO
-		place (id,address,money,userid,state)
+		place
+		(id,address,money,userid,state)
 		VALUES(#{id},#{address},#{money},#{userid},#{state})
 	</insert>
 
@@ -38,7 +40,6 @@
 		SELECT COUNT(*) from place p JOIN `user` u
 		on p.userid=u.id
 		<include refid="serach" />
-		LIMIT #{skipNum},#{takeNum}
 	</select>
 
 	<!-- 删除信息 -->
@@ -65,7 +66,8 @@
 		where id=#{id}
 	</update>
 	<!-- 获取未使用的车位下拉列表 -->
-	<select id="findPlaceSelect" resultType="com.ssm.util.SelectCustom">
-	SELECT id value,CONCAT(money,':',address) name FROM place WHERE state='否'
+	<select id="findPlaceSelect"
+		resultType="com.ssm.util.SelectCustom">
+		SELECT id value,CONCAT(money,':',address) name FROM place WHERE state='否'
 	</select>
 </mapper>

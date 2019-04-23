@@ -39,7 +39,6 @@
 		SELECT COUNT(*) from owner o JOIN `user` u
 		on o.id=u.id join floor f on f.id=o.floorid
 		<include refid="serach" />
-		LIMIT #{skipNum},#{takeNum}
 	</select>
 
 	<!-- 删除信息 -->

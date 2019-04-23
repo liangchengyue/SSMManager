@@ -27,6 +27,7 @@
 		<include refid="select" />
 		from notice
 		<include refid="serach" />
+		ORDER BY time DESC
 		LIMIT #{skipNum},#{takeNum}
 	</select>
 
@@ -35,7 +36,6 @@
 		resultType="int">
 		SELECT COUNT(*) from notice
 		<include refid="serach" />
-		LIMIT #{skipNum},#{takeNum}
 	</select>
 
 	<!-- 删除信息 -->

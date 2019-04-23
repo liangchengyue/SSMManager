@@ -29,7 +29,6 @@
 		resultType="int">
 		SELECT COUNT(*) from floor
 		 <include refid="serach"/>
-		  LIMIT #{skipNum},#{takeNum}
 	</select>
 	<!-- 删除楼房 -->
 	<delete id="delete" parameterType="floor">

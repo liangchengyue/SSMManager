@@ -34,7 +34,6 @@
 		resultType="int">
 		SELECT COUNT(*) from `user`
 		 <include refid="serach"/>
-		  LIMIT #{skipNum},#{takeNum}
 	</select>
 	<!-- 删除用户 -->
 	<delete id="delete" parameterType="user">

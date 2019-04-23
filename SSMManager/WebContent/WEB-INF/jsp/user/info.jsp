@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
 	pageEncoding="utf-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="utf-8">
 <title>Insert title here</title>
+<link href="../resource/css/bootstrap.min.css" rel="stylesheet" />
 <style type="text/css">
 table{
 width: 600px;
@@ -23,6 +25,7 @@ padding-right: 20px;
 </head>
 <body>
 	<h2 style="text-align: center;">个人信息</h2>
+	<c:if test="${user.phone!=null}">
 	<table>
 		<tr>
 			<th>姓名:</th>
@@ -69,5 +72,13 @@ padding-right: 20px;
 			<td>${info.money}元/年</td>
 		</tr>
 	</table>
+	</c:if>
+	<c:if test="${user.phone==null}">
+	<p>请完善信息</p>
+	</c:if>
+	<p style="text-align: center;margin-top: 10px">
+	<a  href="javascript:;" class="btn btn-primary" onclick="window.location.href='toUpdate'">修改信息</a>
+
+</p>
 </body>
 </html>

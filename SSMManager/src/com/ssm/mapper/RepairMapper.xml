@@ -6,12 +6,20 @@
 	<sql id="select">
 		r.id id,userid,r.name name,content,r.phone phone,starttime,endtime,money,remarks,pictures,u.name userName
 	</sql>
-	
+		
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where r.name like '%${keyword}%' or content like
-		'%${keyword}%' or remarks like '%${keyword}%' or u.name like
-		'%${keyword}%'
+		where 
+		<if test="userId==0">
+			r.name like '%${keyword}%' or content like
+			'%${keyword}%' or remarks like '%${keyword}%' or u.name like
+			'%${keyword}%'
+		</if>
+		<if test="userId!=0">
+			userid=#{userId} and (r.name like '%${keyword}%' or content like
+			'%${keyword}%' or remarks like '%${keyword}%' or u.name like
+			'%${keyword}%') 
+		</if>
 	</sql>
 	
 	<!-- 添加信息 -->
@@ -38,7 +46,6 @@
 		SELECT COUNT(*) from repair r JOIN `user` u
 		on r.userid=u.id
 		<include refid="serach" />
-		LIMIT #{skipNum},#{takeNum}
 	</select>
 
 	<!-- 删除信息 -->

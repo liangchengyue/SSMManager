@@ -50,7 +50,11 @@ public class ComplaintController {
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public String list(Pagination pagination){
+	public String list(Pagination pagination,HttpServletRequest request){
+		User user=(User)request.getSession().getAttribute("user");
+		if(user.getType().equals("0")) {
+			pagination.setUserId(user.getId());
+		}
 		String data=complaintService.list(pagination);
 		return data;
 	}

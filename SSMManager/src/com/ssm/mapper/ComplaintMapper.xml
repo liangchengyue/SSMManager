@@ -9,8 +9,15 @@
 	</sql>
 	<!-- 筛选片段 -->
 	<sql id="serach">
-		where u.name like '%${keyword}%'
+		where
+		<if test="userId==0">
+		 u.name like '%${keyword}%'
 		'%${keyword}%'
+		</if>
+		<if test="userId!=0">
+		userid=#{userId} and (u.name like '%${keyword}%'
+		'%${keyword}%')
+		</if>
 	</sql>
 	<!-- 添加投诉 -->
 	<insert id="insert" parameterType="complaint">
@@ -37,7 +44,6 @@
 		JOIN `user` u
 		on c.userid=u.id
 		<include refid="serach" />
-		LIMIT #{skipNum},#{takeNum}
 	</select>
 	<!-- 删除投诉 -->
 	<delete id="delete" parameterType="user">

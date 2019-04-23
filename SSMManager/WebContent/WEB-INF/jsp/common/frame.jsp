@@ -51,7 +51,9 @@
 						</span>
 						</a>
 						<ul class="dropdown-menu animated fadeInRight m-t-xs">
-							<li><a class="J_menuItem" href="/SSMManager/user/toInfo">个人资料</a></li>
+							<c:if test="${user.type=='0'}">
+								<li><a class="J_menuItem" href="/SSMManager/user/toInfo">个人资料</a></li>
+							</c:if>
 							<li><a href="/SSMManager/user/loginOut">安全退出</a></li>
 						</ul>
 					</div>
@@ -72,8 +74,11 @@
 					</li>
 				</c:if>
 				<c:if test="${user.type=='0' }">
-					<li><a class="J_menuItem" href="place/toList"><i
-							class="fa fa-user"></i>车位列表</a></li>
+					<li><a class="J_menuItem" href="complaint/toList"><i
+							class="fa fa-user"></i>投诉列表</a> <a class="J_menuItem"
+						href="fee/toList"><i class="fa fa-user"></i>费用列表</a> <a
+						class="J_menuItem" href="repair/toList"><i class="fa fa-user"></i>维修列表</a>
+					</li>
 				</c:if>
 
 			</ul>

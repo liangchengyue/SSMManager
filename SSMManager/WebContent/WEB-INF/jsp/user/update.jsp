@@ -119,7 +119,6 @@ span.field-validation-error {
 			$.ajax({
 				url : 'findUserInfo',
 				success : function(data) {
-					console.log(data);
 					data = JSON.parse(data);
 					for (k in data) {
 						$("#" + k).val(data[k]);
@@ -147,7 +146,7 @@ span.field-validation-error {
 						data : data,
 						success : function(data) {
 							layer.msg(msg);
-							$("#id").val("");
+							self.location=document.referrer;
 						}
 					});
 				});

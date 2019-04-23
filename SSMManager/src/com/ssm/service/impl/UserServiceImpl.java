@@ -81,7 +81,7 @@ public class UserServiceImpl implements UserService {
 		user.setName(userInfo.getUname());
 		user.setAge(userInfo.getAge());
 		user.setSex(userInfo.getSex());
-		userInfo.setPhone(userInfo.getPhone());
+		user.setPhone(userInfo.getPhone());
 		userMapper.update(user);
 		Owner owner=ownerMapper.findById(user.getId()+"");
 		if(owner==null)

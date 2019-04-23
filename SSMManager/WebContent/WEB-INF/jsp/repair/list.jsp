@@ -22,6 +22,7 @@
 <link rel="stylesheet"
 	href="resource/plugins/grid_manager/GridManager.min.css">
 <script src="resource/js/jquery.min.js"></script>
+<script src="resource/js/jquery.validate.min.js"></script>
 <script src="resource/js/bootstrap.min.js"></script>
 <script src="resource/js/common.js"></script>
 <script type="text/javascript"
@@ -150,8 +151,10 @@ span.field-validation-error {
 				<form id="data">
 					<div class="modal-body">
 						<input type="hidden" id="id">
+						<input id="userType" type="hidden" value="${user.type }">
+						<input id="userId"  type="hidden" value="${user.id }">
 						<div class="row">
-							<div class="col-lg-12">
+							<div class="col-lg-12" id="user">
 								<div class="form-group" lang="userid">
 									<label for="driverid">用户：</label> </label> <select name="userid"
 										id="userid" class="selectpicker form-control"
@@ -238,6 +241,11 @@ span.field-validation-error {
 			$(".cls")
 					.append('<table grid-manager="demo-ajaxPageCode"></table>');
 			init(keyword);
+		}
+		var userType=$("#userType").val();
+		if(userType==0){
+			$("#user").hide();
+			$("#userId").attr('name','userid');
 		}
 		$("#serach").click(
 				function() {

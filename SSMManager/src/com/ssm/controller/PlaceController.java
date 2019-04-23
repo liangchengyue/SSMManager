@@ -39,7 +39,8 @@ public class PlaceController {
 	 */
 	@RequestMapping("/list")
 	@ResponseBody
-	public String list(Pagination pagination){
+	public String list(Pagination pagination,HttpServletRequest request){
+		
 		String data=placeService.list(pagination);
 		return data;
 	}
